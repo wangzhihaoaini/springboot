@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangzhihao.springboot.mapper.UserMapper">
+    <select id="queryOne" resultType="com.wangzhihao.springboot.entity.User">
+        select * from user where id = #{id};
+    </select>
+
+    <delete id="deleteOne" parameterType="java.lang.Integer">
+        delete from user where id=#{id};
+    </delete>
+
+    <insert id="insertOne" parameterType="com.wangzhihao.springboot.entity.User">
+        insert into user (username,password) values (#{username},#{password});
+    </insert>
+
+    <update id="updateOne" parameterType="com.wangzhihao.springboot.entity.User">
+        update user set username=#{username},password=#{password} where id=#{id};
+    </update>
+
+    <select id="queryAll" resultType="com.wangzhihao.springboot.entity.User">
+        select * from user a
+        <trim prefix="where" prefixOverrides="AND |OR">
+            <if test="username != null and username != ''">
+                and a.username=#{username}
+            </if>
+            <if test="password != null and password != ''">
+                or a.password=#{password}
+            </if>
+        </trim>
+    </select>
+</mapper>

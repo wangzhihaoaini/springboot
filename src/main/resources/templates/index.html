@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--使用webjars-locator隐藏版本号，利于系统资源升级-->
+    <!--使用@引入资源的好处：当项目名发生改变，资源访问路径也随之改变-->
+    <script th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+    <script th:src="@{/js/myJs.js}"></script>
+</head>
+<body>
+<table width="100%" border="1" cellspacing="1" cellpadding="0">
+    <tr>
+        <!--使用#获取国际化信息-->
+        <td th:text="#{index.author}">作者</td>
+        <td th:text="#{index.name}">教程名称</td>
+        <td th:text="#{index.url}">地址</td>
+    </tr>
+    <tr th:each="learn:${learnList}">
+        <td th:text="${learn.author}"></td>
+        <td th:text="${learn.title}"></td>
+        <td><a th:href="${learn.url}" target="_blank">网址</a></td>
+    </tr>
+</table>
+<input type="checkbox" value="记住我">[[#{index.author}]]
+<a th:href="@{/learn/index(l='zh_CN')}">中文</a>
+<a th:href="@{/learn/index(l='en_US')}">英文</a>
+<a th:href="@{/student}">去学生页面</a>
+</body>
+</html>
