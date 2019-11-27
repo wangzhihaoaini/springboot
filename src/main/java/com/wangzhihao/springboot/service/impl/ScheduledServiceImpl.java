@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
  * @Version 1.0
  **/
 @Service
-//@EnableScheduling  //开启基于注解的定时任务
 public class ScheduledServiceImpl implements ScheduledService{
     //cron表达式
     @Scheduled(cron = "0/5 * * * * MON-SAT")
