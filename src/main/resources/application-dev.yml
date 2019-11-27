@@ -67,4 +67,4 @@ logging:
     #日志输出的格式控制台
     console: '%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n'
   level:
-    com.example.demo.mapper: debug
+    com.wangzhihao.springboot.mapper: debug
