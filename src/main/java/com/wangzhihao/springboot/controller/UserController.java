@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @PutMapping("/user")
-    public Integer updateOne(User user){
+    public User updateOne(User user){
         return this.userService.updateOne(user);
     }
 

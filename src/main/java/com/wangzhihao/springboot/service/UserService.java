@@ -15,6 +15,6 @@ public interface UserService{
     User queryOne(Integer id);
     Integer deleteOne(Integer id);
     Integer insertOne(User user);
-    Integer updateOne(User user);
+    User updateOne(User user);
     List<User> queryAll(String username,String password);
 }
