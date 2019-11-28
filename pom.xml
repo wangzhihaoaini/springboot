@@ -11,7 +11,7 @@
     <groupId>com.wangzhihao</groupId>
     <artifactId>springboot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
+    <name>springboot</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -87,6 +87,17 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>/src/main/java</directory>
+            </resource>
+            <resource>
+                <directory>/src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

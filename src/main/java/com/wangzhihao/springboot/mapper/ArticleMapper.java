@@ -1,7 +1,7 @@
 package com.wangzhihao.springboot.mapper;
 
 
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @ClassName ArticleMapper
@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
  * @Date 19/11/18 22:14
  * @Version 1.0
  **/
-@Repository
+@Mapper
 public interface ArticleMapper{
 }
