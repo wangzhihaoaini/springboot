@@ -50,18 +50,23 @@ public class UserServiceImpl implements UserService{
 
     /**
      *@Author wangzhihao
-     *@Description @CachePut用于方法执行后，讲更新的结果同步更新到缓存，既保证了方法的调用，又更新缓存
-     *             ps:注意@CachePut更新后的key，要与Cacheable中的一致，否则无法更新缓存，会存入一个新的CachePut的key的缓存
-     *@Date 9:34 19/11/28
-     *@Param [user]
+     *@Description @CacheEvict新出现两个属性allEntries 和beforeInvocation
+     *
+     *allEntries:allEntries是boolean类型，表示是否需要清除缓存中的所有元素。默认为false，
+     *表示不需要。当指定了allEntries为true时，Spring Cache将忽略指定的key。有的时候我们需要
+     *Cache一下清除所有的元素，这比一个一个清除元素更有效率。
+     *
+     * beforeInvocation:清除操作默认是在对应方法成功执行之后触发的，即方法如果因为抛出异常而未能
+     * 成功返回时也不会触发清除操作。使用beforeInvocation可以改变触发清除操作的时间，当我们指定该
+     * 属性值为true时，Spring会在调用该方法之前清除缓存中的指定元素。
+     *@Date 13:54 19/11/28
+     *@Param [id]
      *@return java.lang.Integer
      **/
     @CacheEvict(cacheNames = "user")
     @Override
-    public User deleteOne(Integer id){
-        User user = queryOne(id);
-        this.userMapper.deleteOne(id);
-        return user;
+    public Integer deleteOne(Integer id){
+        return this.userMapper.deleteOne(id);
     }
 
     @Override
@@ -71,7 +76,7 @@ public class UserServiceImpl implements UserService{
 
     /**
      *@Author wangzhihao
-     *@Description @CachePut用于方法执行后，讲更新的结果同步更新到缓存，既保证了方法的调用，又更新缓存
+     *@Description @CachePut用于方法执行后，讲更新的结果存到缓存，既保证了方法的调用，又更新缓存
      *             ps:注意@CachePut更新后的key，要与Cacheable中的一致，否则无法更新缓存，会存入一个新的CachePut的key的缓存
      *@Date 9:34 19/11/28
      *@Param [user]

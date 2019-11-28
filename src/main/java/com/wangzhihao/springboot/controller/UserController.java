@@ -5,6 +5,7 @@ import com.wangzhihao.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class UserController {
     }
 
     @DeleteMapping("/user/{id}")
-    public User deleteOne(@PathVariable("id") Integer id){
+    public Integer deleteOne(@PathVariable("id") Integer id){
         return this.userService.deleteOne(id);
     }
 
