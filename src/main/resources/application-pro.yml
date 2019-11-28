@@ -59,8 +59,7 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/**/*.xml
 
 logging:
-  #在当前项目的根目录创建文件夹，并以默认的spring.log为日志文件
-  path: /usr/local/springboot/
+  file: springboot.log
   pattern:
     #日志输出的格式，日志文件
     file: '%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n'
