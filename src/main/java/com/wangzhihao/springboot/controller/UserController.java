@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @DeleteMapping("/user/{id}")
-    public Integer deleteOne(@PathVariable("id") Integer id){
+    public User deleteOne(@PathVariable("id") Integer id){
         return this.userService.deleteOne(id);
     }
 

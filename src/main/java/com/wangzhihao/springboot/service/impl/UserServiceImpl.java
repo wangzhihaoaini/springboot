@@ -4,6 +4,7 @@ import com.wangzhihao.springboot.entity.User;
 import com.wangzhihao.springboot.mapper.UserMapper;
 import com.wangzhihao.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -46,9 +47,21 @@ public class UserServiceImpl implements UserService{
         return this.userMapper.queryOne(id);
     }
 
+
+    /**
+     *@Author wangzhihao
+     *@Description @CachePut用于方法执行后，讲更新的结果同步更新到缓存，既保证了方法的调用，又更新缓存
+     *             ps:注意@CachePut更新后的key，要与Cacheable中的一致，否则无法更新缓存，会存入一个新的CachePut的key的缓存
+     *@Date 9:34 19/11/28
+     *@Param [user]
+     *@return java.lang.Integer
+     **/
+    @CacheEvict(cacheNames = "user")
     @Override
-    public Integer deleteOne(Integer id){
-        return this.userMapper.deleteOne(id);
+    public User deleteOne(Integer id){
+        User user = queryOne(id);
+        this.userMapper.deleteOne(id);
+        return user;
     }
 
     @Override

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ScheduledServiceImpl implements ScheduledService{
     //cron表达式
-    @Scheduled(cron = "0/5 * * * * MON-SAT")
+    //@Scheduled(cron = "0/5 * * * * MON-SAT")
     @Override
     public void print() {
         System.out.println("我是定时任务哦耶  "+System.currentTimeMillis());

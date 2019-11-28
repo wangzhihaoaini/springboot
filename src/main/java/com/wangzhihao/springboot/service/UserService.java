@@ -13,7 +13,7 @@ import java.util.List;
  **/
 public interface UserService{
     User queryOne(Integer id);
-    Integer deleteOne(Integer id);
+    User deleteOne(Integer id);
     Integer insertOne(User user);
     User updateOne(User user);
     List<User> queryAll(String username,String password);
