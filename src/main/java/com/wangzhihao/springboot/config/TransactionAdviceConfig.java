@@ -7,7 +7,7 @@ import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.interceptor.DefaultTransactionAttribute;
 import org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource;
@@ -17,7 +17,7 @@ import org.springframework.transaction.interceptor.TransactionInterceptor;
 @Configuration
 public class TransactionAdviceConfig{
     @Autowired
-    private PlatformTransactionManager transactionManager;
+    private DataSourceTransactionManager transactionManager;
     private static final String AOP_POINTCUT_EXPRESSION = "execution (* com..service.impl.*.*(..))";
 
     @Bean
