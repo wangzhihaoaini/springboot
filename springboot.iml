@@ -84,6 +84,20 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-context-support:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.sun.mail:javax.mail:1.6.2" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-redis:2.1.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-redis:2.1.10.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-keyvalue:2.1.10.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:2.1.10.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-oxm:5.1.9.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: io.lettuce:lettuce-core:5.1.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-handler:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.2.12.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-devtools:2.1.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.1.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.1.8.RELEASE" level="project" />
