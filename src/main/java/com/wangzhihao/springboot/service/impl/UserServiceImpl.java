@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -89,6 +90,26 @@ public class UserServiceImpl implements UserService{
         return user;
     }
 
+    /**
+     *@Author wangzhihao
+     *@Description @Caching组合缓存注解
+     *               适用于复杂缓存注解的方法，指定多种缓存策略
+     *@Date 21:28 19/12/02
+     *@Param [username,password]
+     *@return User
+     **/
+    @Caching(
+            cacheable = {
+                    @Cacheable(value = "user",key = "#username")
+            },
+            put={
+                    @CachePut(value = "user",key = "#password"),
+                    @CachePut(value = "user",key = "#result.id")
+            },
+            evict = {
+                    @CacheEvict(value = "user",key = "#username")
+            }
+    )
     @Override
     public List<User> queryAll(String username, String password){
         return userMapper.queryAll(username,password);
