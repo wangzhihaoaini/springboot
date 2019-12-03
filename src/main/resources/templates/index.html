@@ -6,7 +6,7 @@
     <!--使用webjars-locator隐藏版本号，利于系统资源升级-->
     <!--使用@引入资源的好处：当项目名发生改变，资源访问路径也随之改变-->
     <script th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
-    <script th:src="@{/js/myJs.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <table width="100%" border="1" cellspacing="1" cellpadding="0">
@@ -26,5 +26,35 @@
 <a th:href="@{/learn/index(l='zh_CN')}">中文</a>
 <a th:href="@{/learn/index(l='en_US')}">英文</a>
 <a th:href="@{/student}">去学生页面</a>
+
+<div class="clock">
+    <div class="flip">
+        <div class="digital front" data-number="0"></div>
+        <div class="digital back" data-number="1"></div>
+    </div>
+    <div class="flip">
+        <div class="digital front" data-number="0"></div>
+        <div class="digital back" data-number="1"></div>
+    </div>
+    <em class="divider">:</em>
+    <div class="flip">
+        <div class="digital front" data-number="0"></div>
+        <div class="digital back" data-number="1"></div>
+    </div>
+    <div class="flip">
+        <div class="digital front" data-number="0"></div>
+        <div class="digital back" data-number="1"></div>
+    </div>
+    <em class="divider">:</em>
+    <div class="flip">
+        <div class="digital front" data-number="0"></div>
+        <div class="digital back" data-number="1"></div>
+    </div>
+    <div class="flip">
+        <div class="digital front" data-number="0"></div>
+        <div class="digital back" data-number="1"></div>
+    </div>
+</div>
 </body>
+<script th:src="@{/js/script.js}"></script>
 </html>
