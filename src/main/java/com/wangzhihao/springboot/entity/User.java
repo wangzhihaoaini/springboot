@@ -1,5 +1,7 @@
 package com.wangzhihao.springboot.entity;
 
+import java.io.Serializable;
+
 /**
  * @ClassName User
  * @Description TODO
@@ -7,7 +9,7 @@ package com.wangzhihao.springboot.entity;
  * @Date 19/11/18 22:08
  * @Version 1.0
  **/
-public class User{
+public class User implements Serializable{
     private Integer id;
     private String username;
     private String password;
