@@ -16,8 +16,12 @@ public class Result{
         return success;
     }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
+    public void setSuccess() {
+        this.success = true;
+    }
+
+    public void setFalse(){
+        this.success=false;
     }
 
     public String getMsg() {
