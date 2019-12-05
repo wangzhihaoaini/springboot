@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta charset="utf-8">
+		<title>见缝插针</title>
+<style>
+	html,body{ overflow: hidden; height: 100vh;}
+	#app{ height: 100vh;}
+	.box {  padding: 100px 0 0 0; }
+	.rota { width: 256px; height: 256px; position: relative; margin: 0 auto;}
+	.li,.ligo { 
+		width: 30px; height: 100px; background: #c00; position: absolute; left: 118px; top:-71px;
+		 transform-origin: 10px 200px;
+		 border: 2px solid #000;
+		 -webkit-border-radius: 20px;
+		 -moz-border-radius: 20px;
+		 border-radius: 20px;
+	}
+	.li:last-child{
+		/* background: #f60; */
+	}
+	.ligo{
+		top:70vh;
+		left:50%;
+		margin-left: -10px;
+	}
+	.btn-go{
+		font-size: 20px;
+		top:85vh;
+		left:50%;
+		margin-left: -25px;
+		position: absolute;
+	}
+	.header{
+		font-size: 5vw;
+		background: eee;
+		padding: 1vw;
+	}
+	
+	.dan { width: 30px; font-size: 20px; color:#c00; position: absolute; left: 20px; bottom:30px; }
+	.dan li { border-bottom: 5px solid #c00; margin-bottom: 20px;transform: rotate(45deg);}
+</style>
+</head>
+<body>
+<button onclick="javascript :history.back(-1);">返回上一页</button>
+ <div id="app">
+ <div class="header">
+	 剩余 <span id="quan">{{num}}</span> 发
+	 角度：<span id="jiao">{{angle}}</span>°
+	 总分：<span id="she">{{she}}</span>
+ </div>
+		<ul class="dan">
+			<li v-for="i in num"></li>
+		</ul>
+		<div class="box">
+			<div class="rota">
+				<img id="img5" th:src="@{/img/game1/chrome.png}" width="256" height="256"/>
+				<div :class="['li',item.index]" v-for="(item,index) in sj" :style="{transform: 'rotate('+ (360 - (item + 180)) +'deg)'}">{{item}}</div>
+			</div>
+		</div>
+		<div class="ligo"></div>
+		<button v-on:click="gogo" class="btn-go">发射</button>
+	</div>
+
+ 		<script th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+		<script th:src="@{/js/game1/jquery.rotate.min.js}"></script>
+
+<!-- 引入样式文件 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
+
+<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
+		<script>
+	
+	var myVar;
+	var sng2 = 0;
+			
+			var app = new Vue({
+			  el: '#app',
+			  data: {
+				num:10,
+				angle:0,
+				quan:0,
+				she:0,
+				over:false,
+				sj:[]
+			  },
+			  created: function () {
+					console.log(1)
+					this.amit()
+			  },
+			  methods: {
+					gogo: function () {
+					  this.she++
+					  this.num--
+					  //this.sj[this.she] = this.angle;
+					  var sng = this.angle
+					 if(this.she > 0){
+					  
+						  for (var item of this.sj) {
+							  if((sng+15) > item && (sng-15) < item){
+								  clearInterval(myVar)
+								  this.over = true
+									vant.Dialog.alert({
+									  message: '游戏结束！最好成绩是：'+this.she
+									}).then(() => {
+									  // on close
+									});
+								  break;
+							  }
+							  console.log(sng2,item)
+						  }
+					  
+					  }
+					  
+					  this.sj.push(sng);
+					 var  _this = this
+					  
+					  if(!this.over && this.num==0){
+						clearInterval(myVar)
+						vant.Dialog.alert({
+						  message: '闯关成功，请进入下一关！'
+						}).then(() => {
+						  _this.next()
+						});
+					  }
+
+
+					},
+					amit:function(){
+						_this = this
+						myVar=setInterval(function() {
+							_this.angle ++ ;
+							$(".rota").rotate(_this.angle);
+							if(_this.angle > 359){
+								_this.angle = 0;
+								_this.quan++;
+							} 
+						}, 10);
+					},
+					next:function(){
+						this.sj = [];
+						this.num = 10;
+						this.quan = 0
+						this.amit()
+						this.rands()
+					},
+					rands:function(){
+						var x = 0
+						var sn
+						while(x<this.she/5){
+							sn = Math.ceil(Math.random()*360);
+							this.sj.push(sn);
+							x++
+						}
+					}
+				}
+			})
+			
+		</script>
+	</body>
+</html>
