@@ -49,12 +49,8 @@ public class LearnController {
         return modelAndView;
     }
 
-    @RequestMapping("/hello")
-    public String hello(Model model, @RequestParam("user")String user){
-        if("aaa".equals(user)){
-            throw new StudentException();
-        }
-        model.addAttribute("hello","<h1>雷猴啊！</h1>");
-        return "login";
+    @RequestMapping("game1")
+    public String hello(){
+        return "games/game1";
     }
 }
