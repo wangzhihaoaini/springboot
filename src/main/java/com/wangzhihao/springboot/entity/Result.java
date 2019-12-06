@@ -12,6 +12,14 @@ public class Result{
     private String msg = "";
     private Object obj = null;
 
+    public Result() {
+    }
+
+    public Result(boolean success, String msg) {
+        this.success = success;
+        this.msg = msg;
+    }
+
     public boolean isSuccess() {
         return success;
     }
