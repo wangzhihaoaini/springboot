@@ -12,7 +12,8 @@ import java.util.List;
  * @Version 1.0
  **/
 public interface UserService{
-    User queryOne(Integer id);
+    User login(String username,String password);
+    User queryOneByUsername(String username);
     Integer deleteOne(Integer id);
     Integer insertOne(User user);
     User updateOne(User user);

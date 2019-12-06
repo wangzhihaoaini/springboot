@@ -63,6 +63,10 @@ body.signin {
     background: #fff url(../../img/locked.png) no-repeat 95% center;color:#333;
 }
 
+.signinpanel .ptel {
+    background: #fff url(../../img/loading-upload.gif) no-repeat 95% center;color:#333;
+}
+
 .signinpanel .btn {
     margin-top: 15px;
 }

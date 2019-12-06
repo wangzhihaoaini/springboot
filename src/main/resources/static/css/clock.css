@@ -1,4 +1,6 @@
 .clock {
+  width: 30%;
+  height: 5%;
   display: flex;
   margin-left: 35%;
 }

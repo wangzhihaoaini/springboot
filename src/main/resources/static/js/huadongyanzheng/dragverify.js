@@ -37,6 +37,7 @@
                     block.css({"left":moveX});
                     dragverifybg.css({"width":moveX});
                 }else if(moveX > maxWidth){
+                    isVerified=true;
                     verifySuc();
                 }
             }

@@ -42,10 +42,15 @@ public class UserServiceImpl implements UserService{
     *@Param [id]
     *@return com.wangzhihao.springboot.entity.User
     **/
-    @Cacheable(cacheNames = "user")
+    @Cacheable(cacheNames = "user",key = "#result.username",condition = "#result!=null")
     @Override
-    public User queryOne(Integer id){
-        return this.userMapper.queryOne(id);
+    public User login(String username,String password){
+        return this.userMapper.login(username,password);
+    }
+
+    @Override
+    public User queryOneByUsername(String username) {
+        return this.userMapper.queryOneByUsername(username);
     }
 
 

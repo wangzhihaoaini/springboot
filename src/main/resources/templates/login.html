@@ -1,17 +1,227 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>博客登录界面</title>
+    <meta name="keywords" content="博客管理系统">
+    <meta name="description" content="博客管理系统">
+    <link th:href="@{/css/login/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/login/font-awesome.css}" rel="stylesheet">
+    <link th:href="@{/css/login/animate.css}" rel="stylesheet">
+    <link th:href="@{/css/login/style.css}" rel="stylesheet">
+    <link th:href="@{/css/login/login.css}" rel="stylesheet">
+    <link th:href="@{/css/huadongyanzheng/dragverify.css}" rel="stylesheet">
+    <link th:href="@{/css/layui/layui.css}" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html"/>
+    <![endif]-->
+    <script>
+        if (window.top !== window.self) {
+            window.top.location = window.location;
+        }
+    </script>
+
 </head>
-<body>
-<h1>登陆页面</h1>
-<form th:action="@{/user/loginIn}" method="post">
-    <!--th:if的使用-->
-    <p style="color: red" th:if="${not #strings.isEmpty(msg)}" th:text="${msg}"></p>
-    用户名：<input name="username" placeholder="请输入用户名">用户名
-    密  码：<input type="password" name="password" placeholder="请输入密码">
-    <input type="submit" value="登录">
-</form>
+
+<body class="signin">
+<div class="signinpanel">
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="signin-info">
+                <div class="logopanel m-b">
+                    <h1>BootDo博客</h1>
+                </div>
+                <div class="m-b"></div>
+                <h3 class="m-b">
+                    欢迎使用 <strong>博客管理系统</strong>
+                </h3>
+                <ul class="m-b">
+                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>springboot</li>
+                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>mybatis</li>
+                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>shiro</li>
+                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>thymeleaf</li>
+                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>bootstrap</li>
+                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>redis</li>
+                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>layui</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-5" id="loginDiv">
+            <form id="signupForm">
+                <h3 class="text-center">用户登录</h3>
+                <p class="m-t-md text-center">欢迎登录博客后台管理系统</p>
+                <input type="text" name="username" class="form-control uname" th:value="${username}" placeholder="用户名"/>
+                <input type="password" name="password" class="form-control pword m-b" th:value="${password}" placeholder="密码"/>
+                <div class="row">
+                    <div class="col-xs-6 pull_left">
+                        <div class="form-group">
+                            <div id="dragverify"></div>
+                        </div>
+                    </div>
+                </div>
+                <a id="login" class="btn btn-login btn-block">登录</a>
+                <a id="toRegister" class="btn btn-login btn-block">还没有账号?点此注册</a>
+                <!--按钮模块-->
+                <div class="outside-login">
+                    <div class="outside-login-tit">
+                        <span>代码链接</span>
+                    </div>
+                    <div class="outside-login-cot">
+                        <a class="outside-login-btn wxoa actived oschina J-btnSwitchLoginType" target="_Blank"
+                           href="https://gitee.com/wangzhihaoaini">
+                            <em><i class="fa fa-home"></i></em>
+                            <span>oschina主页</span>
+                        </a>
+                        <a class="outside-login-btn wxoa actived my J-btnSwitchLoginType" target="_Blank"
+                           href="https://gitee.com/wangzhihaoaini/springboot">
+                            <em><i class="fa fa-git-square"></i></em>
+                            <span>码云仓库</span>
+                        </a>
+                        <a class="outside-login-btn wxoa actived git J-btnSwitchLoginType" target="_Blank"
+                           href="https://github.com/wangzhihaoaini">
+                            <em><i class="fa fa-github"></i></em>
+                            <span>GitHub仓库</span>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-sm-5" id="registerDiv">
+            <form id="registerForm">
+                <h3 class="text-center">用户注册</h3>
+                <p class="m-t-md text-center">欢迎注册</p>
+                <input type="text" name="registerUsername" class="form-control uname" placeholder="用户名"/>
+                <input type="password" name="registerPassword" class="form-control pword m-b" placeholder="密码"/>
+                <input type="tel" name="tel" class="form-control ptel m-b" placeholder="手机号"/>
+                <div class="row">
+                    <div class="col-xs-6 pull_left">
+                    </div>
+                </div>
+                <a id="register" class="btn btn-login btn-block">注册账号</a>
+                <a id="toLogin" class="btn btn-login btn-block">已有帐号?去登录</a>
+                <!--按钮模块-->
+                <div class="outside-login">
+                    <div class="outside-login-tit">
+                        <span>代码链接</span>
+                    </div>
+                    <div class="outside-login-cot">
+                        <a class="outside-login-btn wxoa actived oschina J-btnSwitchLoginType" target="_Blank"
+                           href="https://gitee.com/wangzhihaoaini">
+                            <em><i class="fa fa-home"></i></em>
+                            <span>oschina主页</span>
+                        </a>
+                        <a class="outside-login-btn wxoa actived my J-btnSwitchLoginType" target="_Blank"
+                           href="https://gitee.com/wangzhihaoaini/springboot">
+                            <em><i class="fa fa-git-square"></i></em>
+                            <span>码云仓库</span>
+                        </a>
+                        <a class="outside-login-btn wxoa actived git J-btnSwitchLoginType" target="_Blank"
+                           href="https://github.com/wangzhihaoaini">
+                            <em><i class="fa fa-github"></i></em>
+                            <span>GitHub仓库</span>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="signup-footer m-b">
+        <div class="pull-left">&copy;2019-<span id="currentYear"></span> ZhiHao All Rights Reserved</div>
+    </div>
+</div>
+<!-- 全局js -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/login/bootstrap.min.js}"></script>
+
+<!-- 自定义js -->
+<script th:src="@{/js/login/content.js}"></script>
+<script th:src="@{/js/huadongyanzheng/dragverify.js}"></script>
+<!-- jQuery Validation plugin javascript-->
+<script th:src="@{/js/login/ajax-util.js}"></script>
+<script th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
+<script th:src="@{/js/plugins/validate/messages_zh.min.js}"></script>
+<script th:src="@{/js/plugins/layer/layer.min.js}"></script>
+<script type="text/javascript">
+    //用于判断滑块验证是否完成
+    var isVerified=false;
+    //页面初始化
+    $(function (){
+        $("#registerDiv").hide();
+        //获取当前年份，用于页脚版权声明
+        var currentYear=new Date().getFullYear();
+        $("#currentYear").html(currentYear);
+    });
+
+    //登录
+    $("#login").click(function () {
+        var username=$("input[name='username']").val();
+        var password=$("input[name='password']").val();
+        if(username===''||password===''){
+            layer.msg('请输入用户名或密码');
+            return;
+        }
+        if(!isVerified){
+            layer.msg('请拖动滑块验证');
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "user/login",
+            data: {
+                "username":username,
+                "password":password
+            },
+            success: function (result) {
+                if (result.success) {
+                    var index = layer.load(1, {
+                        shade: [0.1, '#fff'] //0.1透明度的白色背景
+                    });
+                    parent.location.href = '/resource/index';
+                } else {
+                    layer.msg(result.msg);
+                }
+            }
+        });
+    });
+
+    //注册
+    $("#register").click(function () {
+        var username=$("input[name='registerUsername']").val();
+        var password=$("input[name='registerPassword']").val();
+        if(username===''||password===''){
+            layer.msg('请输入用户名或密码');
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "user/register",
+            data: {
+                "username":username,
+                "password":password
+            },
+            success: function (result) {
+                if (result.success) {
+                    layer.msg(result.msg);
+                } else {
+                    layer.msg(result.msg);
+                }
+            }
+        });
+    });
+
+    $("#toRegister").click(function () {
+        $("#loginDiv").hide();
+        $("#registerDiv").show();
+    });
+
+    $("#toLogin").click(function () {
+        $("#registerDiv").hide();
+        $("#loginDiv").show();
+    });
+</script>
 </body>
 </html>

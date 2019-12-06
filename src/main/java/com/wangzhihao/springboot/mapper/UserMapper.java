@@ -15,7 +15,8 @@ import java.util.List;
  **/
 @Mapper
 public interface UserMapper{
-    User queryOne(@Param("id") Integer id);
+    User login(@Param("username") String username,@Param("password") String password);
+    User queryOneByUsername(@Param("username") String username);
     Integer deleteOne(@Param("id") Integer id);
     Integer insertOne(User user);
     Integer updateOne(User user);
