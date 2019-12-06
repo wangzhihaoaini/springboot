@@ -3,6 +3,7 @@ package com.wangzhihao.springboot.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -23,16 +24,17 @@ public class MyWebMvcConfigure implements WebMvcConfigurer {
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {
 //                registry.addViewController("/").setViewName("login");
-                registry.addViewController("/login").setViewName("login2");
+                registry.addViewController("/login").setViewName("login");
                 registry.addViewController("/student").setViewName("student/student");
             }
 
             //注册自定义拦截器 addPathPatterns 拦截的请求  excludePathPatterns放行的请求
-//            @Override
-//            public void addInterceptors(InterceptorRegistry registry) {
-//                registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
-//                        .excludePathPatterns("index.html","/login","/user/loginIn");
-//            }
+            @Override
+            public void addInterceptors(InterceptorRegistry registry) {
+                registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
+                        .excludePathPatterns("index.html","/login","/user/login",
+                                "/css/**","/fonts/**","/img/**","/js/**");
+            }
         };
         return webMvcConfigurer;
     }
