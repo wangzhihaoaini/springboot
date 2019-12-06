@@ -19,8 +19,8 @@ import java.util.List;
  * @Version 1.0
  **/
 @Controller
-@RequestMapping("learn")
-public class LearnController {
+@RequestMapping("resource")
+public class ResourceController {
     @RequestMapping("index")
     public ModelAndView index(){
         List<Resouce> learnList =new ArrayList<Resouce>();
