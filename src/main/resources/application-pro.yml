@@ -1,8 +1,6 @@
 #注意乱码问题   解决方法为file encoding中修改字符集
 server:
   port: 80
-  servlet:
-    context-path: /springboot
   error:
     #spring boot 2.X以上用于页面获取exception对象
     include-exception: true
