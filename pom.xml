@@ -37,6 +37,7 @@
             <artifactId>mysql-connector-java</artifactId>
             <!--运行期间可用-->
             <!--<scope>runtime</scope>-->
+            <version>5.1.34</version>
         </dependency>
         <!--引入Druid-->
         <dependency>
