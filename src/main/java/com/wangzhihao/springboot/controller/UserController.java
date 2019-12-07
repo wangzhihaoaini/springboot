@@ -37,7 +37,6 @@ public class UserController{
             request.getSession().setAttribute("user",username);
             return new Result(true,"登陆成功");
         }else {
-            logger.error("用户名密码错误或用户不存在");
             return new Result(false,"用户名密码错误或用户不存在");
         }
     }
@@ -50,10 +49,10 @@ public class UserController{
             return new Result(false,"此用户名已被注册");
         }
         Integer row = userService.insertOne(user);
+        System.out.println(row);
         if(row>0){
             return new Result(true,"注册成功,请登录");
         }else {
-            logger.error("注册失败");
             return new Result(false,"注册失败,请稍后重试");
         }
     }

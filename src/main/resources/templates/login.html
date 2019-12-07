@@ -169,8 +169,8 @@
             return;
         }
         $.ajax({
-            type: "POST",
-            url: "user/login",
+            type: "post",
+            url: "/user/login",
             data: {
                 "username":username,
                 "password":password
@@ -192,23 +192,22 @@
     $("#register").click(function () {
         var username=$("input[name='registerUsername']").val();
         var password=$("input[name='registerPassword']").val();
+        layer.msg(username+password);
         if(username===''||password===''){
             layer.msg('请输入用户名或密码');
             return;
         }
         $.ajax({
-            type: "POST",
-            url: "user/register",
+            type: "post",
+            url: "/user/register",
             data: {
                 "username":username,
                 "password":password
             },
             success: function (result) {
-                if (result.success) {
-                    layer.msg(result.msg);
-                } else {
-                    layer.msg(result.msg);
-                }
+                layer.msg(result.msg);
+                // $("#registerDiv").hide();
+                // $("#loginDiv").show();
             }
         });
     });
