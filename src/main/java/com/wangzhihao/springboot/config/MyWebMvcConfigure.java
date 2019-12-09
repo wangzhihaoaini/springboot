@@ -23,18 +23,16 @@ public class MyWebMvcConfigure implements WebMvcConfigurer {
         WebMvcConfigurer webMvcConfigurer=new WebMvcConfigurer() {
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {
-//                registry.addViewController("/").setViewName("login");
-                registry.addViewController("/login").setViewName("login");
                 registry.addViewController("/student").setViewName("student/student");
             }
 
             //注册自定义拦截器 addPathPatterns 拦截的请求  excludePathPatterns放行的请求
-            @Override
-            public void addInterceptors(InterceptorRegistry registry) {
-                registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
-                        .excludePathPatterns("index.html","/login","/user/login","/user/register",
-                                "/css/**","/fonts/**","/img/**","/js/**");
-            }
+//            @Override
+//            public void addInterceptors(InterceptorRegistry registry) {
+//                registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
+//                        .excludePathPatterns("index.html","/login","/user/login","/user/register",
+//                                "/css/**","/fonts/**","/img/**","/js/**");
+//            }
         };
         return webMvcConfigurer;
     }
