@@ -3,14 +3,18 @@ package com.wangzhihao.springboot.controller;
 import com.wangzhihao.springboot.entity.Result;
 import com.wangzhihao.springboot.entity.User;
 import com.wangzhihao.springboot.service.UserService;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * @ClassName LoginController
@@ -23,21 +27,32 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController{
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     private UserService userService;
 
+    @GetMapping("/login")
+    public String toLogin(){
+        return "login";
+    }
 
     @PostMapping("/login")
     @ResponseBody
-    public Object login(@RequestParam("username") String username, @RequestParam("password") String password,
-                        HttpServletRequest request){
-        User user = userService.login(username, password);
-        if(user!=null){
-            request.getSession().setAttribute("user",username);
+    public Object login(@RequestParam("username") String username, @RequestParam("password") String password){
+        // 从SecurityUtils里边创建一个 subject
+        Subject subject= SecurityUtils.getSubject();
+        // 在认证提交前准备 token（令牌)
+        UsernamePasswordToken token=new UsernamePasswordToken(username,password);
+        // 执行认证登陆
+        try {
+            subject.login(token);
+        }catch (Exception e) {
+            return new Result(false,e.getMessage());
+        }
+        if(subject.isAuthenticated()){
+            token.clear();
             return new Result(true,"登陆成功");
-        }else {
-            return new Result(false,"用户名密码错误或用户不存在");
+        }else{
+            return new Result(false,"登陆失败");
         }
     }
 

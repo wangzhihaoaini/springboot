@@ -83,6 +83,12 @@
             <!--<groupId>org.springframework.boot</groupId>-->
             <!--<artifactId>spring-boot-starter-data-redis</artifactId>-->
         <!--</dependency>-->
+        <!--引入Shiro-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.4.0</version>
+        </dependency>
         <!--引入热部署-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
