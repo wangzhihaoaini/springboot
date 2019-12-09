@@ -154,26 +154,6 @@
         //获取当前年份，用于页脚版权声明
         var currentYear=new Date().getFullYear();
         $("#currentYear").html(currentYear);
-
-        //获取cookie中的用户名密码
-        // $.ajax({
-        //     type: "POST",
-        //     url: "user/getCookie",
-        //     data: {
-        //         "username":username,
-        //         "password":password
-        //     },
-        //     success: function (result) {
-        //         if (result.success) {
-        //             var index = layer.load(1, {
-        //                 shade: [0.1, '#fff'] //0.1透明度的白色背景
-        //             });
-        //             parent.location.href = '/resource/index';
-        //         } else {
-        //             layer.msg(result.msg);
-        //         }
-        //     }
-        // });
     });
 
     //登录
@@ -189,8 +169,9 @@
             return;
         }
         $.ajax({
-            type: "post",
+            type: "POST",
             url: "/user/login",
+            dataType:"JSON",
             data: {
                 "username":username,
                 "password":password
@@ -212,22 +193,20 @@
     $("#register").click(function () {
         var username=$("input[name='registerUsername']").val();
         var password=$("input[name='registerPassword']").val();
-        layer.msg(username+password);
         if(username===''||password===''){
             layer.msg('请输入用户名或密码');
             return;
         }
         $.ajax({
-            type: "post",
+            type: "POST",
             url: "/user/register",
+            dataType:"JSON",
             data: {
                 "username":username,
                 "password":password
             },
             success: function (result) {
                 layer.msg(result.msg);
-                // $("#registerDiv").hide();
-                // $("#loginDiv").show();
             }
         });
     });
