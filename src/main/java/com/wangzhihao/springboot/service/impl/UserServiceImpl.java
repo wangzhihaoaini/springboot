@@ -42,7 +42,6 @@ public class UserServiceImpl implements UserService{
     *@Param [id]
     *@return com.wangzhihao.springboot.entity.User
     **/
-    @Cacheable(cacheNames = "user",key = "#result.username",condition = "#result!=null")
     @Override
     public User login(String username,String password){
         return this.userMapper.login(username,password);
