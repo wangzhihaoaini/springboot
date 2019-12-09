@@ -2,6 +2,7 @@ package com.wangzhihao.springboot.controller;
 
 import com.wangzhihao.springboot.entity.Resouce;
 import com.wangzhihao.springboot.exception.StudentException;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import java.util.List;
  * @Version 1.0
  **/
 @Controller
+@RequiresPermissions("user:resource")
 @RequestMapping("resource")
 public class ResourceController {
     @RequestMapping("index")
