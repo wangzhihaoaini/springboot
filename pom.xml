@@ -89,6 +89,11 @@
             <artifactId>shiro-spring</artifactId>
             <version>1.4.0</version>
         </dependency>
+        <!--引入AMQP高级消息队列协议,集成RabbitMQ-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
         <!--引入热部署-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

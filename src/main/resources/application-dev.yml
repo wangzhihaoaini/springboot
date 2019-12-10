@@ -38,6 +38,12 @@ spring:
     # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
+  #集成rabbitmq
+  rabbitmq:
+    host: 192.168.31.128    #docker容器
+    username: guest
+    password: guest
+
   #redis相关配置
 #  redis:
 #    # Redis数据库索引（默认为0）
