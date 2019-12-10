@@ -4,7 +4,9 @@ import com.wangzhihao.springboot.entity.Result;
 import com.wangzhihao.springboot.entity.User;
 import com.wangzhihao.springboot.service.UserService;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
@@ -14,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -31,13 +34,18 @@ public class UserController{
     private UserService userService;
 
     @GetMapping("/login")
-    public String toLogin(){
+    public String toLogin(@CookieValue(name = "username",required = false) String username,
+                          @CookieValue(name = "password",required = false) String password,
+                          Model model){
+        model.addAttribute("username",username);
+        model.addAttribute("password",password);
         return "login";
     }
 
     @PostMapping("/login")
     @ResponseBody
-    public Object login(@RequestParam("username") String username, @RequestParam("password") String password){
+    public Object login(@RequestParam("username") String username, @RequestParam("password") String password,
+                        HttpServletRequest request,HttpServletResponse response){
         // 从SecurityUtils里边创建一个 subject
         Subject subject= SecurityUtils.getSubject();
         // 在认证提交前准备 token（令牌)
@@ -49,6 +57,12 @@ public class UserController{
             return new Result(false,e.getMessage());
         }
         if(subject.isAuthenticated()){
+            Cookie usernameCookie=new Cookie("username",username);
+            Cookie passwordCookie=new Cookie("password",password);
+            usernameCookie.setMaxAge(1000);
+            passwordCookie.setMaxAge(1000);
+            response.addCookie(usernameCookie);
+            response.addCookie(passwordCookie);
             token.clear();
             return new Result(true,"登陆成功");
         }else{
