@@ -73,12 +73,10 @@ public class UserController{
     @PostMapping("/register")
     @ResponseBody
     public Object register(User user){
-        System.out.println(user);
         if(userService.queryOneByUsername(user.getUsername())!=null){
             return new Result(false,"此用户名已被注册");
         }
         Integer row = userService.insertOne(user);
-        System.out.println(row);
         if(row>0){
             return new Result(true,"注册成功,请登录");
         }else {
