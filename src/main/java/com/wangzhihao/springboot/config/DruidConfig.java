@@ -19,7 +19,7 @@ import javax.sql.DataSource;
  * @Version 1.0
  **/
 @Configuration
-public class DruidConfigure{
+public class DruidConfig {
     // 将所有前缀为spring.datasource下的配置项都加载到DataSource中
     @ConfigurationProperties("spring.datasource")
     @Bean

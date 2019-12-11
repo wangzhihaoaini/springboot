@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  **/
 @Configuration
 //@EnableWebMvc   可以完全接管spring boot的mvc，默认配置将不起作用
-public class MyWebMvcConfigure implements WebMvcConfigurer {
+public class WebMvcConfig implements WebMvcConfigurer {
     //这个方法可以设置多个映射,切记不可忘记@Bean注解
     @Bean
     public WebMvcConfigurer webMvcConfigurer(){

@@ -19,7 +19,7 @@ import java.util.Arrays;
  * @Version 1.0
  **/
 @Configuration
-public class MyServerConfigure {
+public class MyServerConfig {
 //    @Bean
 //    public WebServerFactoryCustomizer webServerFactoryCustomizer(){
 //        return new WebServerFactoryCustomizer<ConfigurableServletWebServerFactory>() {
