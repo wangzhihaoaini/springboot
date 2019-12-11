@@ -1,7 +1,9 @@
 package com.wangzhihao.springboot.service.impl;
 
+import com.wangzhihao.springboot.entity.User;
 import com.wangzhihao.springboot.service.RabbitMQService;
-import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ import org.springframework.stereotype.Service;
 public class RabbitMQServiceImpl implements RabbitMQService{
     @Autowired
     private RabbitTemplate rabbitTemplate;
+    @Autowired
+    private AmqpAdmin amqpAdmin;
 
     /**
     *@Author wangzhihao
@@ -65,5 +69,53 @@ public class RabbitMQServiceImpl implements RabbitMQService{
     @Override
     public void sendFanout(String exchange,Object object) {
         rabbitTemplate.convertAndSend(exchange,"",object);
+    }
+
+    /**
+    *@Author wangzhihao
+    *@Description 监听的队列一旦有消息就消费
+    *@Date 21:27 19/12/11
+    *@Param [user]
+    *@return void
+    **/
+    @RabbitListener(queues = {"wangzhihao.bbb"})
+    @Override
+    public void receive(User user) {
+        System.out.println(user);
+    }
+
+//    @RabbitListener(queues = {"wangzhihao.bbb"})
+    public void receiveMessage(Message message){
+        System.out.println(message.getBody());
+        System.out.println(message.getMessageProperties());
+    }
+
+    /**
+    *@Author wangzhihao
+    *@Description
+    *@Date 21:46 19/12/11
+    *@Param [queueName]
+    *@return void
+    **/
+    @Override
+    public void createQueue(String queueName) {
+        amqpAdmin.declareQueue(new Queue(queueName));
+    }
+
+    @Override
+    public void createExchange(String exchangeName) {
+        amqpAdmin.declareExchange(new DirectExchange(exchangeName));
+    }
+
+    /**
+    *@Author wangzhihao
+    *@Description destination 要绑定的队列  destinationType QUEUE EXCHANGE
+    *@Date 22:48 19/12/11
+    *@Param [destination, destinationType, exchange, routingKey]
+    *@return void
+    **/
+    @Override
+    public void createBinding(String destination, Binding.DestinationType destinationType,String exchange, String routingKey){
+        amqpAdmin.removeBinding(new Binding(destination,destinationType,exchange,routingKey,null));
     }
 }
