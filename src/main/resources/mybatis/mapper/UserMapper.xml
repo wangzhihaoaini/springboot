@@ -35,11 +35,11 @@
         </trim>
     </select>
 
-    <select id="queryRolesByUsername" resultType="java.lang.String">
+    <select id="queryRolesByUsername" resultType="com.wangzhihao.springboot.entity.User_Role">
         select a.username,a.rolename from user_role a where a.username = #{username};
     </select>
 
-    <select id="queryPermissionsByRoleName" resultType="java.lang.String">
+    <select id="queryPermissionsByRoleName" resultType="com.wangzhihao.springboot.entity.Role_Permission">
         select a.rolename,a.permission_name from role_permission a where a.rolename = #{rolename};
     </select>
 </mapper>
