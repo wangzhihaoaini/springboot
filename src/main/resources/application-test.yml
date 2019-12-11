@@ -11,7 +11,7 @@ spring:
   #数据源
   datasource:
     username: root
-    password: Access123456
+    password:
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     driver-class-name: com.mysql.jdbc.Driver
     #替换默认数据源为Druid
@@ -49,7 +49,7 @@ spring:
     # Redis服务器连接端口
     port: 6379
     # Redis服务器连接密码（默认为空）
-    password: Access123456
+    password:
     jedis:
       pool:
         # 连接池最大连接数（使用负值表示没有限制）
@@ -89,4 +89,4 @@ logging:
     file: '%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n'
     #日志输出的格式控制台
     console: '%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n'
-  level: warn
+  level: debug
