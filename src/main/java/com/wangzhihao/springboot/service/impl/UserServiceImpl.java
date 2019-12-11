@@ -1,6 +1,8 @@
 package com.wangzhihao.springboot.service.impl;
 
+import com.wangzhihao.springboot.entity.Role_Permission;
 import com.wangzhihao.springboot.entity.User;
+import com.wangzhihao.springboot.entity.User_Role;
 import com.wangzhihao.springboot.mapper.UserMapper;
 import com.wangzhihao.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @ClassName UserServiceImpl
@@ -117,5 +120,15 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<User> queryAll(String username, String password){
         return userMapper.queryAll(username,password);
+    }
+
+    @Override
+    public Set<User_Role> queryRolesByUsername(String username){
+        return this.userMapper.queryRolesByUsername(username);
+    }
+
+    @Override
+    public Set<Role_Permission> queryPermissionsByRoleName(String rolename) {
+        return this.userMapper.queryPermissionsByRoleName(rolename);
     }
 }

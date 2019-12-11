@@ -1,21 +1,21 @@
 package com.wangzhihao.springboot.entity;
 
-import java.io.Serializable;
 import java.util.Set;
 
 /**
- * @ClassName User
+ * @ClassName Role
  * @Description TODO
  * @Author wangzhihao
- * @Date 19/11/18 22:08
+ * @Date 2019/12/11 16:28
  * @Version 1.0
  **/
-public class User implements Serializable{
-    private static final long serialVersionUID = -8495229851368805188L;
+public class Role{
     private Integer id;
     private String username;
-    private String password;
-    private Set<User_Role> roles;
+    /**
+     * 角色对应权限
+     */
+    private Set<Role_Permission> permissions;
 
     public Integer getId() {
         return id;
@@ -33,20 +33,20 @@ public class User implements Serializable{
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public Set<Role_Permission> getPermissions() {
+        return permissions;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPermissions(Set<Role_Permission> permissions) {
+        this.permissions = permissions;
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Role{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
+                ", permissions=" + permissions +
                 '}';
     }
 }

@@ -1,6 +1,8 @@
 package com.wangzhihao.springboot.realm;
 
+import com.wangzhihao.springboot.entity.Role_Permission;
 import com.wangzhihao.springboot.entity.User;
+import com.wangzhihao.springboot.entity.User_Role;
 import com.wangzhihao.springboot.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -38,6 +40,15 @@ public class UserRealm extends AuthorizingRealm{
         String username=(String) SecurityUtils.getSubject().getPrincipal();
         SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();
         Set<String> permission=new HashSet<String>();
+        //查询用户拥有的权限
+        Set<User_Role> user_roles = userService.queryRolesByUsername(username);
+//        for(User_Role userRole:user_roles){
+//            Set<Role_Permission> role_permissions = userService.queryPermissionsByRoleName(userRole.getRolename());
+//            for(Role_Permission rolePermission: role_permissions){
+//                permission.add(rolePermission.getPermissionName());
+////                System.out.println(rolePermission.getPermissionName());
+//            }
+//        }
         permission.add("user:resource");
         info.setStringPermissions(permission);
         return info;

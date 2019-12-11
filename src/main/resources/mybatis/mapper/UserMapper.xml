@@ -34,4 +34,12 @@
             </if>
         </trim>
     </select>
+
+    <select id="queryRolesByUsername" resultType="java.lang.String">
+        select a.username,a.rolename from user_role a where a.username = #{username};
+    </select>
+
+    <select id="queryPermissionsByRoleName" resultType="java.lang.String">
+        select a.rolename,a.permission_name from role_permission a where a.rolename = #{rolename};
+    </select>
 </mapper>

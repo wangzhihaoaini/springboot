@@ -62,6 +62,7 @@
                         </div>
                     </div>
                 </div>
+                <input type="radio" name="rememberMe" style="margin-left: 30%" value="1"/>30天內记住我
                 <a id="login" class="btn btn-login btn-block">登录</a>
                 <a id="toRegister" class="btn btn-login btn-block">还没有账号?点此注册</a>
                 <!--按钮模块-->
@@ -174,7 +175,8 @@
             dataType:"JSON",
             data: {
                 "username":username,
-                "password":password
+                "password":password,
+                "rememberMe":$("input[name='rememberMe']:checked").val()
             },
             success: function (result) {
                 if (result.success) {

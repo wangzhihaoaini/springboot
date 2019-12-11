@@ -1,10 +1,13 @@
 package com.wangzhihao.springboot.mapper;
 
+import com.wangzhihao.springboot.entity.Role_Permission;
 import com.wangzhihao.springboot.entity.User;
+import com.wangzhihao.springboot.entity.User_Role;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @ClassName UserMapper
@@ -21,4 +24,6 @@ public interface UserMapper{
     Integer insertOne(User user);
     Integer updateOne(User user);
     List<User> queryAll(@Param("username") String username,@Param("password") String password);
+    Set<User_Role> queryRolesByUsername(@Param("username") String username);
+    Set<Role_Permission> queryPermissionsByRoleName(@Param("rolename") String rolename);
 }

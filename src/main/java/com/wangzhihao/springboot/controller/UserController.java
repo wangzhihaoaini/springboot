@@ -34,38 +34,31 @@ public class UserController{
     private UserService userService;
 
     @GetMapping("/login")
-    public String toLogin(@CookieValue(name = "username",required = false) String username,
-                          @CookieValue(name = "password",required = false) String password,
-                          Model model){
-        model.addAttribute("username",username);
-        model.addAttribute("password",password);
+    public String toLogin(){
         return "login";
     }
 
     @PostMapping("/login")
     @ResponseBody
     public Object login(@RequestParam("username") String username, @RequestParam("password") String password,
-                        HttpServletRequest request,HttpServletResponse response){
+                        @RequestParam(name = "rememberMe",required = false) Integer rememberMe){
         // 从SecurityUtils里边创建一个 subject
         Subject subject= SecurityUtils.getSubject();
         // 在认证提交前准备 token（令牌)
         UsernamePasswordToken token=new UsernamePasswordToken(username,password);
         // 执行认证登陆
         try {
+//            if(rememberMe==1){
+//                token.setRememberMe(true);
+//            }
             subject.login(token);
         }catch (Exception e) {
             return new Result(false,e.getMessage());
         }
         if(subject.isAuthenticated()){
-            Cookie usernameCookie=new Cookie("username",username);
-            Cookie passwordCookie=new Cookie("password",password);
-            usernameCookie.setMaxAge(1000);
-            passwordCookie.setMaxAge(1000);
-            response.addCookie(usernameCookie);
-            response.addCookie(passwordCookie);
-            token.clear();
             return new Result(true,"登陆成功");
         }else{
+            token.clear();
             return new Result(false,"登陆失败");
         }
     }

@@ -1,8 +1,12 @@
 package com.wangzhihao.springboot.service;
 
+import com.wangzhihao.springboot.entity.Role;
+import com.wangzhihao.springboot.entity.Role_Permission;
 import com.wangzhihao.springboot.entity.User;
+import com.wangzhihao.springboot.entity.User_Role;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @ClassName UserService
@@ -18,4 +22,6 @@ public interface UserService{
     Integer insertOne(User user);
     User updateOne(User user);
     List<User> queryAll(String username,String password);
+    Set<User_Role> queryRolesByUsername(String username);
+    Set<Role_Permission> queryPermissionsByRoleName(String rolename);
 }
