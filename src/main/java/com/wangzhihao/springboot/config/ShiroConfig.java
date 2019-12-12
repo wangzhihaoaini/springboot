@@ -50,11 +50,10 @@ public class ShiroConfig{
         filterChainDefinitionMap.put("/", "anon");
 
         /*authc:所有url都必须认证通过才可以访问,特殊页面如订单或者支付*/
-        filterChainDefinitionMap.put("/resource/index", "user");
-        filterChainDefinitionMap.put("/resource/game1", "user");
+        filterChainDefinitionMap.put("/resource/game1", "authc");
 
         /*user:配置记住我或认证通过可以访问*/
-        filterChainDefinitionMap.put("/**", "user");
+        filterChainDefinitionMap.put("/resource/index", "user");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

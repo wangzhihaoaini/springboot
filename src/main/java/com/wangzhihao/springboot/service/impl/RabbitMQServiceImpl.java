@@ -78,7 +78,7 @@ public class RabbitMQServiceImpl implements RabbitMQService{
     *@Param [user]
     *@return void
     **/
-    @RabbitListener(queues = {"wangzhihao.bbb"})
+//    @RabbitListener(queues = {"wangzhihao.bbb"})
     @Override
     public void receive(User user) {
         System.out.println(user);

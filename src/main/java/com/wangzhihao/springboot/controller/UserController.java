@@ -48,9 +48,9 @@ public class UserController{
         UsernamePasswordToken token=new UsernamePasswordToken(username,password);
         // 执行认证登陆
         try {
-//            if(rememberMe==1){
-//                token.setRememberMe(true);
-//            }
+            if(rememberMe==1){
+                token.setRememberMe(true);
+            }
             subject.login(token);
         }catch (Exception e) {
             return new Result(false,e.getMessage());
