@@ -22,9 +22,18 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-				<div id="incomeNum"></div>
+				<div id="incomeNum" th:each="article:${articles}">
+					<div class="post-preview">
+						<a th:href="@{/blog/open/post/${article.id}}">
+							<h2 th:text="${article.title}" class="post-title"></h2>
+						</a>
+						<p class="post-meta">作者：<a th:text="${article.author}" href="#"></a> &nbsp;&nbsp;
+							<span th:text="${article.modifiedDate}"></span></p>
+					</div>
+					<hr>
+				</div>
 				<div class="clearfix">
-					<p id="flagLoaded" style="display: none; text-align: center;">已全部加载</p>
+					<p id="flagLoaded" style="text-align: center;">已全部加载</p>
 					<a id="flagLoad" style="display: none;" class="btn btn-secondary float-right" 
 						href="javascript:void(0)" onclick="nextPage()">更早 &rarr;</a>
 				</div>
@@ -39,7 +48,6 @@
 		var total;
 		$(function(){
 			// bindList(0);
-
 		});
 
 		function nextPage() {

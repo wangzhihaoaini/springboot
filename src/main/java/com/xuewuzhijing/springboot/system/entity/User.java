@@ -15,6 +15,7 @@ public class User implements Serializable{
     private Integer id;
     private String username;
     private String password;
+    private String nickName;
     /*是否开启 1是 0否*/
     private Integer status;
     private Set<User_Role> roles;
@@ -37,6 +38,14 @@ public class User implements Serializable{
 
     public Integer getId() {
         return id;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public void setId(Integer id) {
@@ -65,6 +74,7 @@ public class User implements Serializable{
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", nickName='" + nickName + '\'' +
                 ", status=" + status +
                 ", roles=" + roles +
                 '}';

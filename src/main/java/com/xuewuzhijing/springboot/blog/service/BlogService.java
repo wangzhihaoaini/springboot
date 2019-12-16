@@ -1,5 +1,9 @@
 package com.xuewuzhijing.springboot.blog.service;
 
+import com.xuewuzhijing.springboot.blog.entity.Article;
+
+import java.util.List;
+
 /**
  * @ClassName BlogService
  * @Description TODO
@@ -8,5 +12,5 @@ package com.xuewuzhijing.springboot.blog.service;
  * @Version 1.0
  **/
 public interface BlogService{
-
+    List<Article> queryAll();
 }

@@ -1,4 +1,4 @@
-//package com.xuewuzhijing.springboot.system.util;
+//package com.xuewuzhijing.springboot.common.util;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.data.redis.core.RedisTemplate;

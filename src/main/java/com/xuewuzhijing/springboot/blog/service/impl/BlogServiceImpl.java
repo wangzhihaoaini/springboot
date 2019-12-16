@@ -1,7 +1,12 @@
 package com.xuewuzhijing.springboot.blog.service.impl;
 
+import com.xuewuzhijing.springboot.blog.entity.Article;
+import com.xuewuzhijing.springboot.blog.mapper.ArticleMapper;
 import com.xuewuzhijing.springboot.blog.service.BlogService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @ClassName BlogServiceImpl
@@ -12,5 +17,11 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class BlogServiceImpl implements BlogService{
+    @Autowired
+    private ArticleMapper articleMapper;
 
+    @Override
+    public List<Article> queryAll() {
+        return this.articleMapper.queryAll();
+    }
 }
