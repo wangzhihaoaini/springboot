@@ -2,12 +2,12 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wangzhihao.springboot.mapper.UserMapper">
-    <select id="login" resultType="com.wangzhihao.springboot.entity.User">
+<mapper namespace="com.xuewuzhijing.springboot.system.mapper.UserMapper">
+    <select id="login" resultType="com.xuewuzhijing.springboot.system.entity.User">
         select * from user where username = #{username} and password=#{password};
     </select>
 
-    <select id="queryOneByUsername" resultType="com.wangzhihao.springboot.entity.User">
+    <select id="queryOneByUsername" resultType="com.xuewuzhijing.springboot.system.entity.User">
         select * from user where username = #{username};
     </select>
 
@@ -15,15 +15,15 @@
         delete from user where id=#{id};
     </delete>
 
-    <insert id="insertOne" parameterType="com.wangzhihao.springboot.entity.User">
+    <insert id="insertOne" parameterType="com.xuewuzhijing.springboot.system.entity.User">
         insert into user (username,password) values (#{username},#{password});
     </insert>
 
-    <update id="updateOne" parameterType="com.wangzhihao.springboot.entity.User">
+    <update id="updateOne" parameterType="com.xuewuzhijing.springboot.system.entity.User">
         update user set username=#{username},password=#{password} where id=#{id};
     </update>
 
-    <select id="queryAll" resultType="com.wangzhihao.springboot.entity.User">
+    <select id="queryAll" resultType="com.xuewuzhijing.springboot.system.entity.User">
         select * from user a
         <trim prefix="where" prefixOverrides="AND |OR">
             <if test="username != null and username != ''">
@@ -35,11 +35,11 @@
         </trim>
     </select>
 
-    <select id="queryRolesByUsername" resultType="com.wangzhihao.springboot.entity.User_Role">
+    <select id="queryRolesByUsername" resultType="com.xuewuzhijing.springboot.system.entity.User_Role">
         select a.username,a.rolename from user_role a where a.username = #{username};
     </select>
 
-    <select id="queryPermissionsByRoleName" resultType="com.wangzhihao.springboot.entity.Role_Permission">
+    <select id="queryPermissionsByRoleName" resultType="com.xuewuzhijing.springboot.system.entity.Role_Permission">
         select a.rolename,a.permission_name from role_permission a where a.rolename = #{rolename};
     </select>
 </mapper>

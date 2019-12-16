@@ -7,5 +7,8 @@
         <setting name="cacheEnabled" value="false"/>
         <setting name="lazyLoadingEnabled" value="false"/>
         <setting name="aggressiveLazyLoading" value="true"/>
+        <!-- 开启驼峰映射 ，为自定义的SQL语句服务-->
+        <!--设置启用数据库字段下划线映射到java对象的驼峰式命名属性，默认为false-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
 </configuration>
