@@ -1,6 +1,6 @@
 package com.xuewuzhijing.springboot.system.controller;
 
-import com.xuewuzhijing.springboot.common.entity.Result;
+import com.xuewuzhijing.springboot.common.controller.BaseController;
 import com.xuewuzhijing.springboot.system.entity.User;
 import com.xuewuzhijing.springboot.system.service.UserService;
 
@@ -9,10 +9,9 @@ import java.util.List;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -24,13 +23,18 @@ import org.springframework.web.bind.annotation.*;
  **/
 @Controller
 @RequestMapping("/user")
-public class UserController{
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+public class UserController extends BaseController{
     @Autowired
     private UserService userService;
 
     @GetMapping("/login")
-    public String toLogin(){
+    public String toLogin(Model model){
+        String username=(String)this.getSubject().getPrincipal();
+        User user = userService.queryOneByUsername(username);
+        if(user!=null){
+            model.addAttribute("username",username);
+            model.addAttribute("password",user.getPassword());
+        }
         return "login";
     }
 
@@ -38,8 +42,8 @@ public class UserController{
     @ResponseBody
     public Object login(@RequestParam("username") String username, @RequestParam("password") String password,
                         @RequestParam(name = "rememberMe",required = false) boolean rememberMe){
-        // 从SecurityUtils里边创建一个 subject
-        Subject subject= SecurityUtils.getSubject();
+        // 从BaseController继承的方法
+        Subject subject=this.getSubject();
         // 在认证提交前准备 token（令牌)
         UsernamePasswordToken token=new UsernamePasswordToken(username,password);
         // 执行认证登陆
@@ -49,13 +53,14 @@ public class UserController{
             }
             subject.login(token);
         }catch (Exception e) {
-            return new Result(false,e.getMessage());
+            this.logger.error(e.getMessage());
+            return this.ajaxFail(e.getMessage());
         }
         if(subject.isAuthenticated()){
-            return new Result(true,"登陆成功");
+            return this.ajaxSuccess("登陆成功");
         }else{
             token.clear();
-            return new Result(false,"登陆失败");
+            return this.ajaxFail("登陆失败");
         }
     }
 
@@ -63,13 +68,13 @@ public class UserController{
     @ResponseBody
     public Object register(User user){
         if(userService.queryOneByUsername(user.getUsername())!=null){
-            return new Result(false,"此用户名已被注册");
+            return this.ajaxFail("此用户名已被注册");
         }
         Integer row = userService.insertOne(user);
         if(row>0){
-            return new Result(true,"注册成功,请登录");
+            return this.ajaxSuccess("注册成功,请登录");
         }else {
-            return new Result(false,"注册失败,请稍后重试");
+            return this.ajaxFail("注册失败,请稍后重试");
         }
     }
 

@@ -54,6 +54,7 @@ public class ShiroConfig{
 
         /*user:配置记住我或认证通过可以访问*/
         filterChainDefinitionMap.put("/resource/index", "user");
+        filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

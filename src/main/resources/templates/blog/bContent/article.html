@@ -11,10 +11,9 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 					<div class="post-heading">
-						<h1 th:text="${bContent.title}"></h1>
-						<span class="meta">作者 <a href="#"
-							th:text="${bContent.author}"></a>&nbsp;&nbsp;<a href="#"
-							th:text="${gtmModified}"></a>
+						<h1 th:text="${article.title}"></h1>
+						<span class="meta">作者 <span th:text="${article.author}"></span>&nbsp;&nbsp;发表于
+							<span th:text="${#dates.format(article.modifiedDate, 'yyyy-MM-dd HH:mm:ss')}"></span>
 						</span>
 					</div>
 				</div>
@@ -26,22 +25,12 @@
 	<article>
 		<div class="container">
 			<div class="col-sm-11">
-				<div id="content" class="summernote"></div>
+				<div id="content" th:text="${article.content}" class="summernote"></div>
 			</div>
 
 		</div>
 	</article>
 	<hr>
 	<div th:include="blog/index/include_blog::footer"></div>
-	<script type="text/javascript" th:inline="javascript">
-		$().ready(function() {
-			$('.summernote').summernote({
-				lang : 'zh-CN'
-			});
-			var content = /*[[${bContent.content}]]*/
-			$('#content').code(content);
-			$('.summernote').destroy();
-		});
-	</script>
 </body>
 </html>

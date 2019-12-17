@@ -3,6 +3,7 @@ package com.xuewuzhijing.springboot.blog.mapper;
 
 import com.xuewuzhijing.springboot.blog.entity.Article;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,5 @@ import java.util.List;
 @Mapper
 public interface ArticleMapper{
     List<Article> queryAll();
+    Article openArticle(@Param("id") Integer id);
 }

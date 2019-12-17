@@ -24,12 +24,8 @@ public class Result{
         return success;
     }
 
-    public void setSuccess() {
-        this.success = true;
-    }
-
-    public void setFalse(){
-        this.success=false;
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
     public String getMsg() {

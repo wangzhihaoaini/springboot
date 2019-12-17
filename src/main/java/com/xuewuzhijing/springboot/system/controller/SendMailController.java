@@ -1,5 +1,6 @@
 package com.xuewuzhijing.springboot.system.controller;
 
+import com.xuewuzhijing.springboot.common.controller.BaseController;
 import com.xuewuzhijing.springboot.system.service.SendMailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  **/
 @Controller
 @RequestMapping("/mail")
-public class SendMailController {
+public class SendMailController extends BaseController{
     @Autowired
     private SendMailService sendMailService;
 

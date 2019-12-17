@@ -1,5 +1,6 @@
 package com.xuewuzhijing.springboot.system.controller;
 
+import com.xuewuzhijing.springboot.common.controller.BaseController;
 import com.xuewuzhijing.springboot.system.entity.Resource;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ import java.util.List;
 @Controller
 @RequiresPermissions("user:resource")
 @RequestMapping("resource")
-public class ResourceController {
+public class ResourceController extends BaseController{
     @RequestMapping("index")
     public ModelAndView index(){
         List<Resource> learnList =new ArrayList<Resource>();

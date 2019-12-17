@@ -24,4 +24,9 @@ public class BlogServiceImpl implements BlogService{
     public List<Article> queryAll() {
         return this.articleMapper.queryAll();
     }
+
+    @Override
+    public Article openArticle(Integer id) {
+        return this.articleMapper.openArticle(id);
+    }
 }

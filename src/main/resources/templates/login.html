@@ -136,13 +136,13 @@
 </div>
 <!-- 全局js -->
 <script th:src="@{/js/jquery.min.js}"></script>
-<script th:src="@{/js/login/bootstrap.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
 
 <!-- 自定义js -->
 <script th:src="@{/js/login/content.js}"></script>
 <script th:src="@{/js/huadongyanzheng/dragverify.js}"></script>
 <!-- jQuery Validation plugin javascript-->
-<script th:src="@{/js/login/ajax-util.js}"></script>
+<script th:src="@{/js/ajax-util.js}"></script>
 <script th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
 <script th:src="@{/js/plugins/validate/messages_zh.min.js}"></script>
 <script th:src="@{/js/plugins/layer/layer.min.js}"></script>
@@ -183,7 +183,7 @@
                     var index = layer.load(1, {
                         shade: [0.1, '#fff'] //0.1透明度的白色背景
                     });
-                    parent.location.href = '/resource/index';
+                    parent.location.href = '/blog/main';
                 } else {
                     layer.msg(result.msg);
                 }

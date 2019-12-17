@@ -13,4 +13,5 @@ import java.util.List;
  **/
 public interface BlogService{
     List<Article> queryAll();
+    Article openArticle(Integer id);
 }

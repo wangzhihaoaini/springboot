@@ -5,4 +5,8 @@
     <select id="queryAll" resultType="com.xuewuzhijing.springboot.blog.entity.Article">
         select * from article a;
     </select>
+
+    <select id="openArticle" resultType="com.xuewuzhijing.springboot.blog.entity.Article">
+        select * from article a where a.id=#{id};
+    </select>
 </mapper>
