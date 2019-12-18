@@ -18,7 +18,7 @@ import java.util.Set;
 
 /**
  * @ClassName UserRealm
- * @Description Shiro鉴权
+ * @Description User登录和授权
  * @Author xuewuzhijing
  * @Date 2019/12/9 13:34
  * @Version 1.0
@@ -37,18 +37,17 @@ public class UserRealm extends AuthorizingRealm{
     **/
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection){
-        String username=(String) SecurityUtils.getSubject().getPrincipal();
+        User user=(User) SecurityUtils.getSubject().getPrincipal();
         SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();
         Set<String> permission=new HashSet<String>();
         //查询用户拥有的权限
-        Set<User_Role> user_roles = userService.queryRolesByUsername(username);
-        for(User_Role userRole:user_roles){
-            Set<Role_Permission> role_permissions = userService.queryPermissionsByRoleName(userRole.getRolename());
-            for(Role_Permission rolePermission: role_permissions){
-                permission.add(rolePermission.getPermissionName());
-            }
-        }
-        permission.add("user:resource");
+        Set<User_Role> user_roles = userService.queryRolesByUsername(user.getUsername());
+//        for(User_Role userRole:user_roles){
+//            Set<Role_Permission> role_permissions = userService.queryPermissionsByRoleName(userRole.getRolename());
+//            for(Role_Permission rolePermission: role_permissions){
+//                permission.add(rolePermission.getPermissionName());
+//            }
+//        }
         info.setStringPermissions(permission);
         return info;
     }
@@ -62,6 +61,7 @@ public class UserRealm extends AuthorizingRealm{
     **/
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+        //controller中UsernamePasswordToken传过来的用户名
         String username=(String)authenticationToken.getPrincipal();
         String userpwd=new String((char[])authenticationToken.getCredentials());
         //根据用户名从数据库获取用户
@@ -78,6 +78,6 @@ public class UserRealm extends AuthorizingRealm{
         if(user.getStatus()==0){
             throw new LockedAccountException("账号已被锁定,请联系管理员");
         }
-        return new SimpleAuthenticationInfo(username, user.getPassword(),getName());
+        return new SimpleAuthenticationInfo(user,user.getPassword(),getName());
     }
 }

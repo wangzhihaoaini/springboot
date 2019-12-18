@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <meta charset="utf-8">
-<head th:include="include :: header"></head>
+<head th:include="blog/index/include_blog :: header"></head>
 <body class="gray-bg">
 	<div class="wrapper wrapper-content animated fadeInRight">
 		<div class="row">
@@ -98,9 +98,9 @@
 		</div>
 	</div>
 
-	<div th:include="include::footer"></div>
+	<div th:include="blog/index/include_blog::footer"></div>
 
-	<script type="text/javascript" src="/js/appjs/blog/bComments/add.js">
+	<script th:src="@{/js/appjs/blog/comments/add.js}" type="text/javascript">
 		
 	</script>
 </body>

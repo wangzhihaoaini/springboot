@@ -6,13 +6,14 @@ import com.xuewuzhijing.springboot.system.service.UserService;
 
 import java.util.List;
 
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+
 
 /**
  * @ClassName LoginController
@@ -29,10 +30,9 @@ public class UserController extends BaseController{
 
     @GetMapping("/login")
     public String toLogin(Model model){
-        String username=(String)this.getSubject().getPrincipal();
-        User user = userService.queryOneByUsername(username);
+        User user=(User)this.getSubject().getPrincipal();
         if(user!=null){
-            model.addAttribute("username",username);
+            model.addAttribute("username",user.getUsername());
             model.addAttribute("password",user.getPassword());
         }
         return "login";

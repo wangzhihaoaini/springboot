@@ -1,5 +1,5 @@
 
-var prefix = "/blog/bComments"
+var prefix = "/blog/comments"
 $(function() {
 	load();
 });

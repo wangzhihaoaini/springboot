@@ -1,5 +1,6 @@
 package com.xuewuzhijing.springboot.system.config;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.xuewuzhijing.springboot.system.realm.UserRealm;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
@@ -32,8 +33,8 @@ public class ShiroConfig{
         ShiroFilterFactoryBean shiroFilterFactoryBean=new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         shiroFilterFactoryBean.setLoginUrl("/user/login");
-        //未授权界面
-        shiroFilterFactoryBean.setUnauthorizedUrl("error/notRole");
+        //未授权界面,通过webMvcConfigurer映射，不走controller
+        shiroFilterFactoryBean.setUnauthorizedUrl("/error/noRole");
         //登录成功后要跳转的链接
 //        shiroFilterFactoryBean.setSuccessUrl("/index");
         Map<String,String> filterChainDefinitionMap=new LinkedHashMap<String, String>();
@@ -51,10 +52,11 @@ public class ShiroConfig{
 
         /*authc:所有url都必须认证通过才可以访问,特殊页面如订单或者支付*/
         filterChainDefinitionMap.put("/resource/game1", "authc");
-
+        /*需要授权才能访问*/
+        filterChainDefinitionMap.put("/resource/**","perms[user:resource]");
         /*user:配置记住我或认证通过可以访问*/
         filterChainDefinitionMap.put("/resource/index", "user");
-        filterChainDefinitionMap.put("/**", "authc");
+//        filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }
@@ -118,5 +120,17 @@ public class ShiroConfig{
         //没搞明白，官网给出的要么0x开头十六进制，要么base64
         cookieRememberMeManager.setCipherKey(Base64.decode("4AvVhmFLUs0KTA3Kprsdag=="));
         return cookieRememberMeManager;
+    }
+
+    /**
+    *@Author wangzhihao
+    *@Description Thymeleaf和Shiro标签整合
+    *@Date 11:34 2019/12/18
+    *@Param []
+    *@return at.pollux.thymeleaf.shiro.dialect.ShiroDialect
+    **/
+    @Bean
+    public ShiroDialect shiroDialect(){
+        return new ShiroDialect();
     }
 }

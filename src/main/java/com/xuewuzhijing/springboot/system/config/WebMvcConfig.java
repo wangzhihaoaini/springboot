@@ -23,6 +23,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {
                 registry.addViewController("/student").setViewName("student/student");
+                registry.addViewController("/error/noRole").setViewName("error/noRole");
             }
 
             //注册自定义拦截器 addPathPatterns 拦截的请求  excludePathPatterns放行的请求

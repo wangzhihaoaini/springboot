@@ -1,4 +1,4 @@
-var prefix = "/blog/bContent"
+var prefix = "/blog"
 $(function() {
 	load();
 });
@@ -190,18 +190,18 @@ function reLoad() {
 function add() {
 	var addPage = layer.open({
 		type : 2,
-		title : '增加',
+		title : '发布文章',
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
-		content : prefix + '/add' // iframe的url
+		content : prefix+'/article' // iframe的url
 	});
 	layer.full(addPage);
 }
 function edit(cid) {
 	var editPage = layer.open({
 		type : 2,
-		title : '编辑',
+		title : '编辑文章',
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
@@ -266,6 +266,5 @@ function batchRemove() {
 			}
 		});
 	}, function() {
-
 	});
 }

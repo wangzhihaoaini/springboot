@@ -10,7 +10,7 @@ public class Result{
     public static final int FAILURE = -1;
     private boolean success;
     private String msg = "";
-    private Object obj = null;
+    private Object object = null;
 
     public Result() {
     }
@@ -36,11 +36,11 @@ public class Result{
         this.msg = msg;
     }
 
-    public Object getObj() {
-        return obj;
+    public Object getObject() {
+        return object;
     }
 
-    public void setObj(Object obj) {
-        this.obj = obj;
+    public void setObject(Object object) {
+        this.object = object;
     }
 }

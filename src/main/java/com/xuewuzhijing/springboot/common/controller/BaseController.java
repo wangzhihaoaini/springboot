@@ -52,6 +52,31 @@ public class BaseController{
     }
 
     /**
+     * ajax成功
+     * @param obj 成功时的对象
+     * @return {Object}
+     */
+    public Object ajaxSuccess(Object obj) {
+        Result result = new Result();
+        result.setSuccess(true);
+        result.setObject(obj);
+        return result;
+    }
+
+    /**
+     * ajax成功
+     * @param obj 成功时的消息和对象
+     * @return {Object}
+     */
+    public Object ajaxSuccess(String msg,Object obj) {
+        Result result = new Result();
+        result.setMsg(msg);
+        result.setSuccess(true);
+        result.setObject(obj);
+        return result;
+    }
+
+    /**
      * ajax失败
      * @param msg 消息
      * @return {Object}
@@ -62,18 +87,5 @@ public class BaseController{
         result.setMsg(msg);
         return result;
     }
-
-    /**
-     * ajax成功
-     * @param obj 成功时的对象
-     * @return {Object}
-     */
-    public Object ajaxSuccess(Object obj) {
-        Result result = new Result();
-        result.setSuccess(true);
-        result.setObj(obj);
-        return result;
-    }
-
 
 }

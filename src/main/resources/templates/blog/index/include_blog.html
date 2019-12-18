@@ -1,4 +1,5 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head th:fragment="header">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -93,10 +94,13 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a th:href="@{/}">主页</a></li>
+				<li><a th:href="@{/blog/main}">主页</a></li>
 				<li><a th:href="@{/blog/open/page/about}">关于</a></li>
 				<li><a th:href="@{/blog/open/page/communication}">交流</a></li>
-				<li><a th:href="@{/user/login}">登录</a></li>
+				<li><a th:href="@{/blog/content/all}">发表文章</a></li>
+				<!--Shiro标签鉴权-->
+				<li shiro:guest><a th:href="@{/user/login}">登录</a></li>
+				<li shiro:user><a th:href="@{/user/login}">个人中心</a></li>
 			</ul>
 		</div>
 	</div>
@@ -107,13 +111,13 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 					<ul class="list-inline text-center">
-						<li><a href="https://www.oschina.net/p/bootdo"> <span
+						<li><a href="#"> <span
 								class="fa-stack fa-lg"> <i
 									class="fa fa-circle fa-stack-2x"></i> <i
 									class="fa fa-home fa-stack-1x fa-inverse"></i>
 							</span>
 						</a></li>
-						<li><a href="https://github.com/wangzhihaoaini/springboot"> <span
+						<li><a href="https://github.com/wangzhihaoaini/springboot" target="_blank"> <span
 								class="fa-stack fa-lg"> <i
 									class="fa fa-circle fa-stack-2x"></i> <i
 									class="fa fa-github fa-stack-1x fa-inverse"></i>
