@@ -42,12 +42,12 @@ public class UserRealm extends AuthorizingRealm{
         Set<String> permission=new HashSet<String>();
         //查询用户拥有的权限
         Set<User_Role> user_roles = userService.queryRolesByUsername(user.getUsername());
-//        for(User_Role userRole:user_roles){
-//            Set<Role_Permission> role_permissions = userService.queryPermissionsByRoleName(userRole.getRolename());
-//            for(Role_Permission rolePermission: role_permissions){
-//                permission.add(rolePermission.getPermissionName());
-//            }
-//        }
+        for(User_Role userRole:user_roles){
+            Set<Role_Permission> role_permissions = userService.queryPermissionsByRoleName(userRole.getRolename());
+            for(Role_Permission rolePermission: role_permissions){
+                permission.add(rolePermission.getPermissionName());
+            }
+        }
         info.setStringPermissions(permission);
         return info;
     }
