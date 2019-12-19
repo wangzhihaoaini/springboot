@@ -30,7 +30,7 @@ public class UserController extends BaseController{
 
     @GetMapping("/login")
     public String toLogin(Model model){
-        User user=(User)this.getSubject().getPrincipal();
+        User user = this.getUser();
         if(user!=null){
             model.addAttribute("username",user.getUsername());
             model.addAttribute("password",user.getPassword());
