@@ -48,9 +48,7 @@ public class UserController extends BaseController{
         UsernamePasswordToken token=new UsernamePasswordToken(username,password);
         // 执行认证登陆
         try {
-            if(rememberMe){
-                token.setRememberMe(true);
-            }
+            token.setRememberMe(rememberMe);
             subject.login(token);
         }catch (Exception e) {
             this.logger.error(e.getMessage());
