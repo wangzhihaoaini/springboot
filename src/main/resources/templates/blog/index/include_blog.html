@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>bootdo面向学习型的开源框架</title>
+<title>Zhihao'Dream</title>
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <link th:href="@{/css/blog/clean-blog.css}" rel="stylesheet">
 <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
@@ -57,8 +57,8 @@
 		overflow:hidden;
 		padding: 7px;
 	    margin-top: 5px;
-	    width:124px;
-	    height:124px;
+	    width:300px;
+	    height:300px;
 	    opacity:1;
 	    z-index:100;
 	    right:0;
@@ -89,7 +89,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/" style="font-size: 24px;">BootDo</a>
+			<a class="navbar-brand" href="/" style="font-size: 24px;">Xuewuzhijing</a>
 		</div>
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
@@ -101,6 +101,7 @@
 				<!--Shiro标签鉴权-->
 				<li shiro:guest><a th:href="@{/user/login}">登录</a></li>
 				<li shiro:user><a th:href="@{/user/login}">个人中心</a></li>
+				<li shiro:user><a th:href="@{/user/logout}">登出</a></li>
 			</ul>
 		</div>
 	</div>
@@ -111,7 +112,7 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 					<ul class="list-inline text-center">
-						<li><a href="#"> <span
+						<li><a th:href="@{/blog/main}"> <span
 								class="fa-stack fa-lg"> <i
 									class="fa fa-circle fa-stack-2x"></i> <i
 									class="fa fa-home fa-stack-1x fa-inverse"></i>
@@ -142,7 +143,7 @@
 					class="fa fa-qq"></i></a>
 			</li>
 			<li>
-				<a class="sidetop" href="javascript:scroll(0,0)" title="返回顶部"><i
+				<a class="sidetop" onclick="smoothscroll()" title="返回顶部"><i
 					class="fa fa-arrow-up"></i></a>
 					
 			</li>
@@ -155,5 +156,14 @@
 	<script th:src="@{/js/appjs/blog/clean-blog.min.js}"></script>
 	<script th:src="@{/js/plugins/summernote/summernote.min.js}"></script>
 	<script th:src="@{/js/plugins/summernote/summernote-zh-CN.js}"></script>
+	<script>
+        function smoothscroll() {
+            var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            if (currentScroll > 0) {
+                window.requestAnimationFrame(smoothscroll);
+                window.scrollTo(0, currentScroll - (currentScroll / 5));
+            }
+        }
+	</script>
 </div>
 </html>

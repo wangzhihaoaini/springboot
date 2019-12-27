@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-
 /**
  * @ClassName LoginController
  * @Description login
@@ -74,6 +73,12 @@ public class UserController extends BaseController{
         }else {
             return this.ajaxFail("注册失败,请稍后重试");
         }
+    }
+
+    @GetMapping("/logout")
+    public void logoutMethod(Model model){
+        super.logout();
+        this.toLogin(model);
     }
 
     @GetMapping("/user")
