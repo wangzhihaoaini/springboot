@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangzhihao.springboot.blog.mapper.CommentMapper">
+    <select id="queryAll" resultType="com.wangzhihao.springboot.blog.entity.Comment">
+        select * from comment a;
+    </select>
+
+    <select id="query" resultType="com.wangzhihao.springboot.blog.entity.Comment">
+        select * from comment a where a.id=#{id};
+    </select>
+
+    <select id="addComment" resultType="java.lang.Integer">
+        insert into comment a (a.article_id,a.comment,a.user_nickname,a.date) values (#{articleId},#{comment},#{userNiakName},#{date});
+    </select>
+</mapper>

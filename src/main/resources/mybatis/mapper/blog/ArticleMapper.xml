@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xuewuzhijing.springboot.blog.mapper.ArticleMapper" >
-    <select id="queryAll" resultType="com.xuewuzhijing.springboot.blog.entity.Article">
-        select * from article a;
+<mapper namespace="com.wangzhihao.springboot.blog.mapper.ArticleMapper" >
+    <sql id="adateFormtColumns">
+        a.id,a.title,a.content,a.type,a.tags,a.categories,a.comments_count,a.allow_comment,a.status,a.author,a.author_id,date_format(a.create_date,'%Y-%m-%d'),date_format(a.modified_date,'%Y-%m-%d')
+    </sql>
+
+    <sql id="aColumns">
+        a.id,a.title,a.content,a.type,a.tags,a.categories,a.comments_count,a.allow_comment,a.status,a.author,a.author_id,a.create_date,a.modified_date
+    </sql>
+
+    <sql id="Columns">
+        id,title,content,type,tags,categories,comments_count,allow_comment,status,author,author_id,create_date,modified_date
+    </sql>
+
+    <select id="queryAll" resultType="com.wangzhihao.springboot.blog.entity.Article">
+        select <include refid="adateFormtColumns"></include> from article a;
     </select>
 
-    <select id="openArticle" resultType="com.xuewuzhijing.springboot.blog.entity.Article">
-        select * from article a where a.id=#{id};
+    <select id="openArticle" resultType="com.wangzhihao.springboot.blog.entity.Article">
+        select <include refid="adateFormtColumns"></include> from article a where a.id=#{id};
     </select>
 </mapper>

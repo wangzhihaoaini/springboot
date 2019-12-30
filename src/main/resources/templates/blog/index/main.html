@@ -29,7 +29,7 @@
                         <h2 th:utext="${article.title}" class="post-title"></h2>
                     </a>
                     <p class="post-meta">作者：<span th:text="${article.author}"></span> &nbsp;&nbsp;
-                        <span th:text="${#dates.format(article.modifiedDate, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+                        <span th:text="${article.modifiedDate}"></span></p>
                 </div>
                 <hr>
             </div>
