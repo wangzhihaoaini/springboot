@@ -1,5 +1,9 @@
 package com.wangzhihao.springboot.blog.service;
 
+import com.wangzhihao.springboot.blog.entity.Comment;
+
+import java.util.List;
+
 /**
  * @ClassName CommentService
  * @Description TODO
@@ -8,5 +12,6 @@ package com.wangzhihao.springboot.blog.service;
  * @Version 1.0
  **/
 public interface CommentService{
-    void addComment(Integer articleId,String comment,String userNiakName);
+    Integer addComment(Integer articleId,String comment,String userNiakName);
+    List<Comment> queryAllById(Integer articleId);
 }

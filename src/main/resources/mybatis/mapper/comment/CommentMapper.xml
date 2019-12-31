@@ -2,15 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wangzhihao.springboot.blog.mapper.CommentMapper">
+    <sql id="adateFormtColumns">
+        a.id,a.article_id,a.user_nickname,a.comment,date_format(a.date,'%Y-%m-%d %H:%i:%s') as date,a.is_reported
+    </sql>
+
     <select id="queryAll" resultType="com.wangzhihao.springboot.blog.entity.Comment">
         select * from comment a;
     </select>
 
-    <select id="query" resultType="com.wangzhihao.springboot.blog.entity.Comment">
-        select * from comment a where a.id=#{id};
+    <select id="queryAllById" resultType="com.wangzhihao.springboot.blog.entity.Comment">
+        select <include refid="adateFormtColumns"/> from comment a where a.article_id=#{articleId};
     </select>
 
     <select id="addComment" resultType="java.lang.Integer">
-        insert into comment a (a.article_id,a.comment,a.user_nickname,a.date) values (#{articleId},#{comment},#{userNiakName},#{date});
+        insert into comment (article_id,comment,user_nickname,date) values (#{articleId},#{comment},#{userNiakName},now());
     </select>
 </mapper>

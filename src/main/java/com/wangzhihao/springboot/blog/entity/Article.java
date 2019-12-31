@@ -36,9 +36,9 @@ public class Article implements Serializable{
     //作者id
     private Integer authorId;
     //创建时间
-    private Date createDate;
+    private String createDate;
     //修改时间
-    private Date modifiedDate;
+    private String modifiedDate;
 
     public Integer getId() {
         return id;
@@ -128,19 +128,19 @@ public class Article implements Serializable{
         this.authorId = authorId;
     }
 
-    public Date getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 
-    public Date getModifiedDate() {
+    public String getModifiedDate() {
         return modifiedDate;
     }
 
-    public void setModifiedDate(Date modifiedDate) {
+    public void setModifiedDate(String modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
 

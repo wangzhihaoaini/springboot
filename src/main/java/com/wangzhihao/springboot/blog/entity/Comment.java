@@ -14,7 +14,7 @@ public class Comment{
     private Integer articleId;
     private String userNickName;
     private String comment;
-    private Date date;
+    private String date;
     private Integer isReported;
 
     public Integer getId() {
@@ -49,11 +49,11 @@ public class Comment{
         this.comment = comment;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.util.Date;
 
@@ -45,7 +47,5 @@ public class DemoApplicationTests {
 
     @Test
     public void localDate(){
-        LocalDateTime localDate = LocalDateTime.now();
-        System.out.println(localDate);
     }
 }

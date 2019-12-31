@@ -1,7 +1,9 @@
 package com.wangzhihao.springboot.blog.controller;
 
 import com.wangzhihao.springboot.blog.entity.Article;
+import com.wangzhihao.springboot.blog.entity.Comment;
 import com.wangzhihao.springboot.blog.service.BlogService;
+import com.wangzhihao.springboot.blog.service.CommentService;
 import com.wangzhihao.springboot.common.controller.BaseController;
 import com.wangzhihao.springboot.system.entity.User;
 import com.wangzhihao.springboot.system.service.UserService;
@@ -26,6 +28,8 @@ public class BlogController extends BaseController{
     private BlogService blogService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/main")
     public String main(Model model){
@@ -37,7 +41,9 @@ public class BlogController extends BaseController{
     @GetMapping("/article/{id}")
     public String openArticle(@PathVariable("id") Integer id,Model model){
         Article article = blogService.openArticle(id);
+        List<Comment> comments = commentService.queryAllById(id);
         model.addAttribute("article",article);
+        model.addAttribute("comments",comments);
         return "blog/content/article";
     }
 

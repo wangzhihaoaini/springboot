@@ -28,14 +28,18 @@ public class CommentController extends BaseController{
     public Object addComment(@RequestParam("articleId") Integer articleId,
                              @RequestParam("comment") String comment){
         User user = this.getUser();
+        System.out.println(user);
         if(user==null){
             return this.ajaxFail("请先登录");
         }
         try {
-            commentService.addComment(articleId,comment,user.getNickName());
+            commentService.addComment(articleId, comment, user.getNickName());
+            return this.ajaxSuccess("留言成功");
         }catch (Exception e){
+            e.printStackTrace();
             return this.ajaxFail("留言失败,原因为:"+e.getMessage());
         }
-        return this.ajaxSuccess("留言成功");
     }
+
+
 }
