@@ -76,9 +76,10 @@ public class UserController extends BaseController{
     }
 
     @GetMapping("/logout")
-    public void logoutMethod(Model model){
+    public String logoutMethod(Model model){
         super.logout();
         this.toLogin(model);
+        return  "redirect:/user/login";
     }
 
     @GetMapping("/user")

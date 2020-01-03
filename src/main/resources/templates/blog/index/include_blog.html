@@ -89,18 +89,18 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/" style="font-size: 24px;">Xuewuzhijing</a>
+			<a class="navbar-brand" href="/" style="font-size: 24px;">学无止境</a>
 		</div>
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a th:href="@{/blog/main}">主页</a></li>
-				<li><a th:href="@{/blog/open/page/about}">关于</a></li>
-				<li><a th:href="@{/blog/open/page/communication}">交流</a></li>
-				<li><a th:href="@{/blog/content/all}">发表文章</a></li>
+				<!--<li><a th:href="@{/blog/open/page/about}">关于</a></li>-->
+				<!--<li><a th:href="@{/blog/open/page/communication}">交流</a></li>-->
+				<li><a th:href="@{/blog/article}">发表文章</a></li>
 				<!--Shiro标签鉴权-->
 				<li shiro:guest><a th:href="@{/user/login}">登录</a></li>
-				<li shiro:user><a th:href="@{/user/login}">个人中心</a></li>
+				<!--<li shiro:user><a th:href="@{/user/login}">个人中心</a></li>-->
 				<li shiro:user><a th:href="@{/user/logout}">登出</a></li>
 			</ul>
 		</div>

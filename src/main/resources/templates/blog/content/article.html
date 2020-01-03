@@ -56,7 +56,7 @@
             // $.sendError('评论内容不能为空！', 3000, function () {
             //     console.log('sendError closed');
             // });
-            layer.msg("评论不能为空");
+            layer.msg("留言不能为空");
             return;
         }
 
@@ -71,12 +71,8 @@
             dataType: "JSON",
             success: function (result) {
                 if (result.success) {
-                    // // 发送成功的提示框（置顶）
-                    // $.sendSuccessToTop('留言成功！', 3000, function () {
-                    //     console.log('sendSuccessToTop closed');
-                    // });
-                    // window.setTimeout("window.location.reload(true)", 3000);
                     layer.msg(result.msg);
+                    window.setTimeout("window.location.reload(true)", 3000);
                 }else{
                     layer.msg(result.msg);
                 }

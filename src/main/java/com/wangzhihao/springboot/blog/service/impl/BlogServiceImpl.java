@@ -6,6 +6,7 @@ import com.wangzhihao.springboot.blog.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -29,4 +30,10 @@ public class BlogServiceImpl implements BlogService{
     public Article openArticle(Integer id) {
         return this.articleMapper.openArticle(id);
     }
+
+    @Override
+    public Integer addArticle(String title, String content, String type, boolean allowComment, boolean allowFeed, String author,Integer authorId,Integer status) {
+            return this.articleMapper.addArticle(title,content,type,allowComment,allowFeed,author,authorId,status);
+    }
+
 }

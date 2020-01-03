@@ -14,4 +14,5 @@ import java.util.List;
 public interface BlogService{
     List<Article> queryAll();
     Article openArticle(Integer id);
+    Integer addArticle(String title,String content,String type,boolean allowComment,boolean allowFeed,String author,Integer authorId,Integer status);
 }

@@ -21,4 +21,8 @@
     <select id="openArticle" resultType="com.wangzhihao.springboot.blog.entity.Article">
         select <include refid="adateFormtColumns"/> from article a where a.id=#{id};
     </select>
+
+    <select id="addArticle" resultType="java.lang.Integer">
+        insert into article (title,content,type,allow_comment,author,author_id,status,create_date,modified_date) values (#{title},#{content},#{type},#{allowComment},#{author},#{authorId},#{status},now(),now());
+    </select>
 </mapper>
