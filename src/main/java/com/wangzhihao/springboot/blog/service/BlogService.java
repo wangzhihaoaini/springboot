@@ -12,7 +12,7 @@ import java.util.List;
  * @Version 1.0
  **/
 public interface BlogService{
-    List<Article> queryAll();
+    List<Article> queryAllArticle();
     Article openArticle(Integer id);
     Integer addArticle(String title,String content,String type,boolean allowComment,boolean allowFeed,String author,Integer authorId,Integer status);
 }

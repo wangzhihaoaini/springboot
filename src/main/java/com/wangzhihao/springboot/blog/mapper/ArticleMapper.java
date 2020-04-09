@@ -16,7 +16,7 @@ import java.util.List;
  **/
 @Mapper
 public interface ArticleMapper{
-    List<Article> queryAll();
+    List<Article> queryAllArticle();
     Article openArticle(@Param("id") Integer id);
     Integer addArticle(@Param("title") String title,@Param("content") String content,@Param("type") String type,@Param("allowComment") boolean allowComment,@Param("allowFeed") boolean allowFeed,@Param("author") String author,@Param("authorId") Integer authorId,@Param("status") Integer status);
 }

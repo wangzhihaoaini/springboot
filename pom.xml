@@ -21,6 +21,10 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
         <!--引入web模块-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

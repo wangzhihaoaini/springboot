@@ -22,8 +22,8 @@ public class BlogServiceImpl implements BlogService{
     private ArticleMapper articleMapper;
 
     @Override
-    public List<Article> queryAll() {
-        return this.articleMapper.queryAll();
+    public List<Article> queryAllArticle() {
+        return this.articleMapper.queryAllArticle();
     }
 
     @Override

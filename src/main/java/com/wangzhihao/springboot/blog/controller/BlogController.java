@@ -38,9 +38,33 @@ public class BlogController extends BaseController{
     **/
     @GetMapping("/main")
     public String main(Model model){
-        List<Article> articles = blogService.queryAll();
+        List<Article> articles = blogService.queryAllArticle();
         model.addAttribute("articles",articles);
         return "blog/index/main";
+    }
+
+    /**
+     *@Author wangzhihao
+     *@Description 文章添加页面
+     *@Date 10:06 2020/1/2
+     *@Param []
+     *@return java.lang.String
+     **/
+    @GetMapping("/article")
+    public String toArticleAdd(){
+        return "blog/content/add";
+    }
+
+    /**
+     *@Author wangzhihao
+     *@Description 查看所有文章,包含已发表和草稿
+     *@Date 10:01 2020/1/2
+     *@Param []
+     *@return java.lang.String
+     **/
+    @GetMapping("/articles")
+    public String bContent(){
+        return "blog/content/all";
     }
 
     /**
@@ -59,17 +83,6 @@ public class BlogController extends BaseController{
         return "blog/content/article";
     }
 
-    /**
-    *@Author wangzhihao
-    *@Description 文章添加页面
-    *@Date 10:06 2020/1/2
-    *@Param []
-    *@return java.lang.String
-    **/
-    @GetMapping("/article")
-    public String toArticleAdd(){
-        return "blog/content/add";
-    }
 
     /**
     *@Author wangzhihao
@@ -80,29 +93,22 @@ public class BlogController extends BaseController{
     **/
     @PostMapping("/article")
     @ResponseBody
-    public Object addArticle(@RequestParam("title") String title,@RequestParam("content") String content,
+    public Object addArticle(@RequestParam(name = "title",required = false) String title,@RequestParam(name = "content",required = false) String content,
                              @RequestParam("type") String type,@RequestParam(name = "allowComment",required = false) boolean allowComment,
                              @RequestParam(name = "allowFeed",required = false) boolean allowFeed,@RequestParam("status") Integer status){
         User user = (User) this.getSubject().getPrincipal();
         if(user==null){
             return this.ajaxFail("请先登录");
         }
-        Integer integer = this.blogService.addArticle(title, content, type, allowComment, allowFeed, user.getNickName(), user.getId(),status);
-        System.out.println(integer);
-        return this.ajaxSuccess("发表成功");
+        try {
+            this.blogService.addArticle(title, content, type, allowComment, allowFeed, user.getNickName(), user.getId(),status);
+        }catch (Exception e){
+            return this.ajaxFail("保存失败,原因为:"+e.getMessage());
+        }
+        return this.ajaxSuccess("保存成功");
     }
 
-    /**
-    *@Author wangzhihao
-    *@Description 查看所有文章
-    *@Date 10:01 2020/1/2
-    *@Param []
-    *@return java.lang.String
-    **/
-    @GetMapping("/articles")
-    public String bContent(){
-        return "all";
-    }
+
 
 
     /**

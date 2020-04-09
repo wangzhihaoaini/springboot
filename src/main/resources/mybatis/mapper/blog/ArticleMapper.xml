@@ -14,8 +14,8 @@
         id,title,content,type,tags,categories,comments_count,allow_comment,status,author,author_id,create_date,modified_date
     </sql>
 
-    <select id="queryAll" resultType="com.wangzhihao.springboot.blog.entity.Article">
-        select <include refid="adateFormtColumns"/> from article a;
+    <select id="queryAllArticle" resultType="com.wangzhihao.springboot.blog.entity.Article">
+        select <include refid="adateFormtColumns"/> from article a where a.status=1;
     </select>
 
     <select id="openArticle" resultType="com.wangzhihao.springboot.blog.entity.Article">
