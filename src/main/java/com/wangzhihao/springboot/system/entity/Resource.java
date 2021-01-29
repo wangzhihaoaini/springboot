@@ -15,11 +15,7 @@ import java.util.Map;
  * @Version 1.0
  **/
 @Component
-//@PropertySource(value = {"classpath:resouce.properties"})
-@PropertySource(value = {"classpath:application-dev.yml"})
-@ConfigurationProperties(prefix = "resouce")
 public class Resource {
-//    @Value("${resouce.author}")
     private String author;
     private String title;
     private String url;

@@ -1,6 +1,7 @@
 package com.wangzhihao.springboot.system.service.impl;
 
 import com.wangzhihao.springboot.system.service.ScheduledService;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**

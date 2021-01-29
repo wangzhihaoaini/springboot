@@ -1,0 +1,7 @@
+log/
+*.log
+target/
+*.iml
+.idea/
+*.zip
+*.md

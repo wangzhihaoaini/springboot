@@ -31,7 +31,7 @@
     <schema id="9" parent="1" name="test">
       <Current>1</Current>
       <Visible>1</Visible>
-      <Collation>utf8_general_ci</Collation>
+      <Collation>utf8mb4_bin</Collation>
     </schema>
     <collation id="10" parent="1" name="armscii8_bin">
       <Charset>armscii8</Charset>
@@ -821,71 +821,307 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="207" parent="9" name="article"/>
-    <table id="208" parent="9" name="employee"/>
-    <table id="209" parent="9" name="user"/>
-    <column id="210" parent="207" name="id">
+    <table id="207" parent="9" name="article">
+      <Comment>博客文章表</Comment>
+      <Collation>utf8_general_ci</Collation>
+    </table>
+    <table id="208" parent="9" name="comment">
+      <Comment>留言评论表</Comment>
+    </table>
+    <table id="209" parent="9" name="exception">
+      <Collation>utf8_general_ci</Collation>
+    </table>
+    <table id="210" parent="9" name="permission">
+      <Comment>权限表</Comment>
+      <Collation>utf8_general_ci</Collation>
+    </table>
+    <table id="211" parent="9" name="role">
+      <Comment>角色表</Comment>
+      <Collation>utf8_general_ci</Collation>
+    </table>
+    <table id="212" parent="9" name="role_permission">
+      <Collation>utf8_general_ci</Collation>
+    </table>
+    <table id="213" parent="9" name="user">
+      <Collation>utf8_general_ci</Collation>
+    </table>
+    <table id="214" parent="9" name="user_role">
+      <Collation>utf8_general_ci</Collation>
+    </table>
+    <column id="215" parent="207" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>int(5)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="211" parent="207" name="articleTitle">
+    <column id="216" parent="207" name="title">
       <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="212" parent="207" name="articleContent">
+    <column id="217" parent="207" name="content">
       <Position>3</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>varchar(10000)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="213" parent="207" name="PRIMARY">
+    <column id="218" parent="207" name="type">
+      <Position>4</Position>
+      <DataType>varchar(16)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="219" parent="207" name="tags">
+      <Position>5</Position>
+      <DataType>varchar(16)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="220" parent="207" name="categories">
+      <Position>6</Position>
+      <DataType>varchar(16)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="221" parent="207" name="comments_count">
+      <Position>7</Position>
+      <DataType>int(11)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="222" parent="207" name="allow_comment">
+      <Position>8</Position>
+      <DataType>int(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="223" parent="207" name="status">
+      <Position>9</Position>
+      <DataType>int(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="224" parent="207" name="author">
+      <Position>10</Position>
+      <DataType>varchar(16)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="225" parent="207" name="author_id">
+      <Position>11</Position>
+      <DataType>int(5)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="226" parent="207" name="create_date">
+      <Position>12</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="227" parent="207" name="modified_date">
+      <Position>13</Position>
+      <DataType>datetime|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="228" parent="207" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="214" parent="208" name="id">
+    <column id="229" parent="208" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="215" parent="208" name="name">
+    <column id="230" parent="208" name="article_id">
       <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="231" parent="208" name="user_nickname">
+      <Position>3</Position>
+      <DataType>varchar(16)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="232" parent="208" name="comment">
+      <Position>4</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="233" parent="208" name="date">
+      <Position>5</Position>
+      <DataType>datetime|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="234" parent="208" name="is_reported">
+      <Position>6</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="235" parent="208" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="236" parent="209" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="237" parent="209" name="class">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="238" parent="209" name="method">
+      <Position>3</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="239" parent="209" name="date">
+      <Position>4</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="240" parent="209" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="241" parent="210" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="242" parent="210" name="permission_name">
+      <Position>2</Position>
+      <DataType>varchar(16)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="243" parent="210" name="url">
+      <Position>3</Position>
+      <DataType>varchar(16)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="244" parent="210" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="245" parent="211" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="246" parent="211" name="rolename">
+      <Position>2</Position>
+      <DataType>varchar(16)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="247" parent="211" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="248" parent="212" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="249" parent="212" name="rolename">
+      <Position>2</Position>
+      <DataType>varchar(16)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="250" parent="212" name="permission_name">
+      <Position>3</Position>
+      <DataType>varchar(16)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="251" parent="212" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="252" parent="213" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="253" parent="213" name="username">
+      <Position>2</Position>
+      <DataType>varchar(16)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="254" parent="213" name="password">
+      <Position>3</Position>
+      <DataType>varchar(16)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="255" parent="213" name="nick_name">
+      <Position>4</Position>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="216" parent="208" name="age">
-      <Position>3</Position>
-      <DataType>int(11)|0s</DataType>
+    <column id="256" parent="213" name="status">
+      <Position>5</Position>
+      <DataType>int(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="217" parent="208" name="PRIMARY">
+    <key id="257" parent="213" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="218" parent="209" name="id">
+    <column id="258" parent="214" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="219" parent="209" name="username">
+    <column id="259" parent="214" name="username">
       <Position>2</Position>
       <DataType>varchar(16)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="220" parent="209" name="password">
+    <column id="260" parent="214" name="rolename">
       <Position>3</Position>
       <DataType>varchar(16)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="221" parent="209" name="PRIMARY">
+    <key id="261" parent="214" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

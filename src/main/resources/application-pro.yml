@@ -9,7 +9,7 @@ spring:
   #数据源
   datasource:
     username: root
-    password:
+    password: Access123456
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     driver-class-name: com.mysql.jdbc.Driver
     #替换默认数据源为Druid
@@ -69,11 +69,6 @@ spring:
     #开启thymleaf缓存
     cache: true
 
-  #mail
-  mail:
-    host: smtp.qq.com
-    username: 825250174@qq.com  #发送方的邮箱
-    password: qihatctlaipnbdib  # 设置密码，该处的密码是发送方QQ邮箱开启SMTP的授权码而非QQ密码
 
 #集成Mybatis
 mybatis:
@@ -81,11 +76,16 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/**/*.xml
 
 logging:
-  file: springboot.log
+  #file: springboot.log
   pattern:
     #日志输出的格式，日志文件
     file: '%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n'
     #日志输出的格式控制台
     console: '%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n'
-    level:
-      root: warn
+  level:
+    com.wangzhihao.springboot: error
+
+#雪花算法定义数据中心和机器编号
+snowflake:
+  datacenterId: 1
+  machineId: 2

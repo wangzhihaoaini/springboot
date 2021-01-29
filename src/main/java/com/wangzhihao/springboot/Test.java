@@ -1,6 +1,15 @@
 package com.wangzhihao.springboot;
 
 import com.wangzhihao.springboot.common.util.HttpUtil;
+import com.wangzhihao.springboot.system.snowflake.SnowFlakeFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 
 /**
  * @ClassName Test
@@ -15,6 +24,6 @@ public class Test {
         String text="分流通知";
         String desp="购票成功";
         httpUtil.doGetParam(text,desp);
-    }
 
+    }
 }

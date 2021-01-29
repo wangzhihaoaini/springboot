@@ -39,10 +39,10 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
   #集成rabbitmq
-  rabbitmq:
-    host: 192.168.31.128    #docker容器
-    username: guest
-    password: guest
+#  rabbitmq:
+#    host: 192.168.31.128    #docker容器
+#    username: guest
+#    password: guest
 
   #redis相关配置
 #  redis:
@@ -76,11 +76,6 @@ spring:
     #禁用thymleaf缓存
     cache: false
 
-  #mail
-  mail:
-    host: smtp.qq.com
-    username: 825250174@qq.com  #发送方的邮箱
-    password: qihatctlaipnbdib  # 设置密码，该处的密码是发送方QQ邮箱开启SMTP的授权码而非QQ密码
 
 #集成Mybatis
 mybatis:
@@ -91,9 +86,15 @@ logging:
   #在当前项目的根目录创建文件夹，并以默认的spring.log为日志文件,根据实际情况更改
   #path: /IntelliJ IDEA 2018.2.1/workspace/springboot/
   #当前项目根路径创建
-  file: springboot.log
   pattern:
     #日志输出的格式，日志文件
     file: '%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n'
     #日志输出的格式控制台
     console: '%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n'
+  level:
+    com.wangzhihao.springboot: error
+
+#雪花算法定义数据中心和机器编号
+snowflake:
+  datacenterId: 1
+  machineId: 2

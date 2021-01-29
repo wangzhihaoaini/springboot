@@ -1,8 +1,6 @@
 #注意乱码问题   解决方法为file encoding中修改字符集
 server:
   port: 80
-  servlet:
-    context-path: /springboot
   error:
     #spring boot 2.X以上用于页面获取exception对象
     include-exception: true
@@ -70,12 +68,6 @@ spring:
   thymeleaf:
     #开启thymleaf缓存
     cache: true
-
-  #mail
-  mail:
-    host: smtp.qq.com
-    username: 825250174@qq.com  #发送方的邮箱
-    password: qihatctlaipnbdib  # 设置密码，该处的密码是发送方QQ邮箱开启SMTP的授权码而非QQ密码
 
 #集成Mybatis
 mybatis:

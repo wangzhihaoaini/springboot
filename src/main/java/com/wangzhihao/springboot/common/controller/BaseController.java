@@ -3,6 +3,9 @@ package com.wangzhihao.springboot.common.controller;
 import com.wangzhihao.springboot.common.entity.Result;
 import com.wangzhihao.springboot.common.util.ShiroUtil;
 import com.wangzhihao.springboot.system.entity.User;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Controller;
  * @Version 1.0
  **/
 @Controller
+@Api(value = "基础控制器")
 public class BaseController{
     protected Logger logger= LoggerFactory.getLogger(BaseController.class);
 
@@ -44,6 +48,8 @@ public class BaseController{
      * @param msg 消息
      * @return {Object}
      */
+    @ApiOperation(value = "ajax成功")
+    @ApiImplicitParam(name = "msg", value = "消息",  paramType = "path", required = true, dataType =  "String")
     public Object ajaxSuccess(String msg) {
         Result result = new Result();
         result.setSuccess(true);
